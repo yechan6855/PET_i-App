@@ -16,6 +16,7 @@ function App(){
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="APage">
+        <Stack.Screen name="APage" component={APage} />
         <Stack.Screen name="BPage" component={BPage} />
         <Stack.Screen name="CPage" component={CPage} />
         <Stack.Screen name="DPage" component={DPage} />
