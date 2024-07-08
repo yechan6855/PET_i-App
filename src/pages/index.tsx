@@ -1,9 +1,10 @@
 import React from "react";
 import { NativeStackNavigationOptions, createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
-import EPage from "./EPage";
+
 import PetList from "./PetList";
 import Developer from "./Developer";
+import PetPage from "./PetPage";
 
 interface PageConfig
 {
@@ -22,8 +23,8 @@ const data : ReadonlyArray<PageConfig> = Object.freeze([
         component : PetList
     },
     {
-        endPoint : "E",
-        component : EPage
+        endPoint : "Pet",
+        component : PetPage
     },
     
 ])

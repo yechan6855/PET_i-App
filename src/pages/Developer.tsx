@@ -7,6 +7,10 @@ function Developer({navigation}: {navigation: NavigationProp<ParamListBase>}) {
     return (
         <View>
             <Button 
+                title ="Pet"
+                onPress={()=> navigation.navigate('Pet')}
+            />
+            <Button 
                 title ="PetList"
                 onPress={()=> navigation.navigate('PetList')}
             />

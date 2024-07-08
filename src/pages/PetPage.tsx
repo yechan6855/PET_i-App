@@ -1,7 +1,7 @@
 import React from 'react';
 import {Text, View,Button, StyleSheet} from 'react-native';
 
-function MainPage(){
+function PetPage(){
     return (
       <View style={styles.MainView}>
         <View style={styles.TopView}>
@@ -124,4 +124,4 @@ function MainPage(){
     },
   });
 
-export default MainPage;
+export default PetPage
