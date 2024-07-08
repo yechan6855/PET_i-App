@@ -1,6 +1,6 @@
 import React from "react";
 import APage from "./APage";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { NativeStackNavigationOptions, createNativeStackNavigator } from "@react-navigation/native-stack";
 import BPage from "./BPage";
 import { NavigationContainer } from "@react-navigation/native";
 import CPage from "./CPage";
@@ -11,6 +11,7 @@ interface PageConfig
 {
     endPoint : string;
     component : React.ComponentType<any>;
+    option? : NativeStackNavigationOptions;
 }
 /// 모든 페이지 라우터의 상수 (모든 페이지의 신)
 const data : ReadonlyArray<PageConfig> = Object.freeze([
