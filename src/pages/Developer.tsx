@@ -3,15 +3,15 @@ import React from 'react';
 import {Button, View} from 'react-native';
 
 
-function APage({navigation}: {navigation: NavigationProp<ParamListBase>}) {
+function Developer({navigation}: {navigation: NavigationProp<ParamListBase>}) {
     return (
         <View>
             <Button 
-            title ="B Page"
-            onPress={()=> navigation.navigate('B')}
+                title ="PetList"
+                onPress={()=> navigation.navigate('PetList')}
             />
         </View>
     );
 }
 
-export default APage;
+export default Developer;

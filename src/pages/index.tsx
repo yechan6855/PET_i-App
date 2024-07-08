@@ -1,11 +1,9 @@
 import React from "react";
-import APage from "./APage";
 import { NativeStackNavigationOptions, createNativeStackNavigator } from "@react-navigation/native-stack";
-import BPage from "./BPage";
 import { NavigationContainer } from "@react-navigation/native";
-import CPage from "./CPage";
-import DPage from "./DPage";
 import EPage from "./EPage";
+import PetList from "./PetList";
+import Developer from "./Developer";
 
 interface PageConfig
 {
@@ -16,20 +14,12 @@ interface PageConfig
 /// 모든 페이지 라우터의 상수 (모든 페이지의 신)
 const data : ReadonlyArray<PageConfig> = Object.freeze([
     {
-        endPoint : "A",
-        component : APage
+        endPoint : "Developer",
+        component : Developer
     },
     {
-        endPoint : "B",
-        component : BPage
-    },
-    {
-        endPoint : "C",
-        component : CPage
-    },
-    {
-        endPoint : "D",
-        component : DPage
+        endPoint : "PetList",
+        component : PetList
     },
     {
         endPoint : "E",
@@ -42,7 +32,7 @@ const Stack = createNativeStackNavigator()
 export const Pages = () => {
     return (
         <NavigationContainer>
-            <Stack.Navigator initialRouteName="A">
+            <Stack.Navigator initialRouteName="Developer">
                 {
                     data.map(({endPoint, component}, index) => {
                         return <Stack.Screen key={index} name={endPoint} component={component}/>
