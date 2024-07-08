@@ -4,10 +4,10 @@ import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#E5E5E5',
+        backgroundColor: 'white',
       },
     list: {
-        backgroundColor: 'white',
+        backgroundColor: '#f5e9b5',
         margin: 5,
         padding: 10,
         borderRadius: 10,
