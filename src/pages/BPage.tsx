@@ -1,10 +1,15 @@
+import { NavigationProp, ParamListBase } from '@react-navigation/native';
 import React from 'react';
-import {Text, View} from 'react-native';
+import {Button, View} from 'react-native';
 
-function BPage() {
-    return(
+
+function BPage({navigation}: {navigation: NavigationProp<ParamListBase>}) {
+    return (
         <View>
-            <Text>Page 1</Text>
+            <Button 
+            title ="A Page"
+            onPress={()=> navigation.navigate('A')}
+            />
         </View>
     );
 }

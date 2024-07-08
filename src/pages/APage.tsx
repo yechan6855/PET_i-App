@@ -7,8 +7,8 @@ function APage({navigation}: {navigation: NavigationProp<ParamListBase>}) {
     return (
         <View>
             <Button 
-            title ="Home Page"
-            onPress={()=> navigation.navigate('BPage')}
+            title ="B Page"
+            onPress={()=> navigation.navigate('B')}
             />
         </View>
     );
