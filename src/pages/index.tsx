@@ -10,6 +10,7 @@ import LogoImage from "../../assets/images/peti_logo.png"
 import PetTodayPage from "./PetTodayPage";
 import PetCalenderPage from "./PetCalenderPage";
 import NotificationPage from "./NotificationPage";
+import PetCreatePage00 from "./PetCreatePage00";
 type RootStackParamList = {
     Developer: undefined;
     PetList: undefined;
@@ -17,6 +18,7 @@ type RootStackParamList = {
     PetToday: undefined;
     PetCalender: undefined;
     Notification: undefined;
+    PetCreate00: undefined;
 }
 interface PageConfig
 {
@@ -49,6 +51,10 @@ const data : ReadonlyArray<PageConfig> = Object.freeze([
     {
         endPoint : "Notification",
         component : NotificationPage
+    },
+    {
+        endPoint : "PetCreate00",
+        component : PetCreatePage00
     },
 ])
 const Stack = createNativeStackNavigator<RootStackParamList>()

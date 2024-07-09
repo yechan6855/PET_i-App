@@ -26,6 +26,10 @@ function Developer({navigation}: {navigation: NavigationProp<ParamListBase>}) {
                 title ="Notification"
                 onPress={()=> navigation.navigate('Notification')}
             />
+            <Button
+                title ="PetCreate00"
+                onPress={()=> navigation.navigate('PetCreate00')}
+            />
         </View>
     );
 }
