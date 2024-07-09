@@ -46,22 +46,23 @@ function PetPage(){
   
   const styles = StyleSheet.create({
     MainView: {
-      marginTop: 20,
     },
     TopView: {
       height: '35%',
-      margin: 10,
+      margin: 5,
       flexDirection: 'row',
     },
     TopLeft:{
       alignItems: 'center',
       backgroundColor: DefaultColor,
       width: '48%',
+      height: '100%',
       margin: 5,
       borderRadius: 15,
     },
     TopRight:{
       width: '48%',
+      height: '100%',
       marginBottom: 5,
       flexDirection: 'column',
     },
