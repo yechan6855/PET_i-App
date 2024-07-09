@@ -1,12 +1,12 @@
 import React from "react";
 import { NativeStackNavigationOptions, NativeStackNavigationProp, createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
-
 import PetList from "./PetList";
 import Developer from "./Developer";
 import PetPage from "./PetPage";
 import Color from "../Constants/Color";
-import { Pressable, Text, View } from "react-native";
+import { Pressable, Text, View, Image, StyleSheet } from "react-native";
+import LogoImage from "../../assets/images/peti_logo.png"
 type RootStackParamList = {
     Developer: undefined;
     PetList: undefined;
@@ -48,10 +48,11 @@ export const Pages = () => {
                                 component={component}
                                 options={option || {
                                     headerStyle : {
-                                        backgroundColor : Color.ORANGE
+                                        backgroundColor : Color.ORANGE,
+                                        
                                     },
                                     headerTitle : LogoTitle,
-                                    headerBackVisible : false
+                                    headerBackVisible : false,
                                 }}
                             />
                         )
@@ -66,7 +67,10 @@ const LogoTitle = () => {
     return (
         <View>
             <Pressable onPress={()=>{navigation.navigate("Developer")}}>
-                <Text>PETI</Text>
+                <Image style={{
+                    width : 80,
+                    height :29,
+                }} source={LogoImage}/>
             </Pressable>
         </View>
     )
