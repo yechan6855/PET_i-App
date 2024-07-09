@@ -7,10 +7,12 @@ import PetPage from "./PetPage";
 import Color from "../Constants/Color";
 import { Pressable, Text, View, Image, StyleSheet } from "react-native";
 import LogoImage from "../../assets/images/peti_logo.png"
+import PetTodayPage from "./PetTodayPage";
 type RootStackParamList = {
     Developer: undefined;
     PetList: undefined;
     Pet: undefined;
+    PetToday: undefined;
 }
 interface PageConfig
 {
@@ -31,6 +33,10 @@ const data : ReadonlyArray<PageConfig> = Object.freeze([
     {
         endPoint : "Pet",
         component : PetPage
+    },
+    {
+        endPoint : "PetToday",
+        component : PetTodayPage
     },
 ])
 const Stack = createNativeStackNavigator<RootStackParamList>()
