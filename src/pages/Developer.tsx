@@ -18,6 +18,10 @@ function Developer({navigation}: {navigation: NavigationProp<ParamListBase>}) {
                 title ="PetToday"
                 onPress={()=> navigation.navigate('PetToday')}
             />
+            <Button 
+                title ="PetCalender"
+                onPress={()=> navigation.navigate('PetCalender')}
+            />
         </View>
     );
 }
