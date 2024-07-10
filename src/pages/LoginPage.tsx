@@ -30,9 +30,11 @@ export default function LoginPage() {
             console.log("로그인 요청!")
             // 성공
             // 대충 redirect 하는 코드
-            throw new Error("오류가 왔어요!")
+
+            // throw new Error("오류가 왔어요!")
             navigation.navigate("Developer")
         } catch (e) {
+            // 서버에서 에러발생하거나 그외에 모든 이슈
             console.log("error 발생")
             console.log(e)
             return
