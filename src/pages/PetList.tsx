@@ -1,5 +1,7 @@
 import React from 'react';
 import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
+import usePet from '../hooks/usePet';
+import { PetGender } from '../types/pet';
 
 const styles = StyleSheet.create({
     container: {
@@ -34,8 +36,13 @@ const styles = StyleSheet.create({
       }
 });
 
-
-const Card = () => {
+interface PetItemProp
+{
+    name : string;
+    birthdate : string;
+    gender : PetGender
+}
+function Card({name, birthdate, gender} : PetItemProp){
     return (
         <View style={styles.list}>
             <Image
@@ -43,8 +50,8 @@ const Card = () => {
                 source={{ uri: 'https://via.placeholder.com/50' }}
             />
             <View style={styles.info}>
-                <Text style={styles.petName}>PetName</Text>
-                <Text style={styles.petDetails}>나이: 2014.09.06</Text>
+                <Text style={styles.petName}>{name}</Text>
+                <Text style={styles.petDetails}>나이: {birthdate}</Text>
                 <Text style={styles.petDetails}>성별: 남</Text>
             </View>
         </View>
@@ -53,14 +60,22 @@ const Card = () => {
 
 
 function PetList() {
+    const [list] = usePet({userId : "ptk57581"})
     return(
         <View style={styles.container}>
             <ScrollView>
-                <Card></Card>
-                <Card></Card>
-                <Card></Card>
-                <Card></Card>
-                <Card></Card>
+                {
+                    list.map(({petId, gender, birthdate, name}, index) => {
+                        return (
+                            <Card
+                                key={petId}
+                                gender={gender}
+                                birthdate={birthdate}
+                                name={name}
+                            />
+                        )
+                    })
+                }
             </ScrollView>
         </View>
     );

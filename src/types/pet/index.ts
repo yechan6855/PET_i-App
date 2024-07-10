@@ -2,7 +2,7 @@
 /**
  * 0 수 1 암 2 중성
  */
-export type Gender = 0 | 1 | 2
+export type PetGender = 0 | 1 | 2
 
 export interface Pet
 {
@@ -10,7 +10,7 @@ export interface Pet
     userId : string;
     name : string;
     birthdate : string;
-    gender : Gender;
+    gender : PetGender;
     profilePictureURL : string;
 }
 
