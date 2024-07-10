@@ -14,6 +14,7 @@ import PetCreatePage00 from "./PetCreatePage00";
 import PetCreatePage01 from "./PetCreatePage01";
 import PetCreateResult from "./PetCreateResultPage";
 import PetCreateResultPage from "./PetCreateResultPage";
+import LoginPage from "./LoginPage";
 
 type RootStackParamList = {
     Developer: undefined;
@@ -25,6 +26,7 @@ type RootStackParamList = {
     PetCreate00: undefined;
     PetCreate01: undefined;
     PetCreateResult: undefined;
+    Login : undefined;
 }
 interface PageConfig
 {
@@ -69,6 +71,10 @@ const data : ReadonlyArray<PageConfig> = Object.freeze([
     {
         endPoint : "PetCreateResult",
         component : PetCreateResultPage
+    },
+    {
+        endPoint : "Login",
+        component : LoginPage
     },
 ])
 const Stack = createNativeStackNavigator<RootStackParamList>()
