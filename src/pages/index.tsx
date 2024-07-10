@@ -16,7 +16,7 @@ import PetCreateResult from "./PetCreateResultPage";
 import PetCreateResultPage from "./PetCreateResultPage";
 import LoginPage from "./LoginPage";
 
-type RootStackParamList = {
+export type RootStackParamList = {
     Developer: undefined;
     PetList: undefined;
     Pet: undefined;
