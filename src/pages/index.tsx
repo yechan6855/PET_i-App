@@ -4,7 +4,7 @@ import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import PetList from "./PetList";
 import Developer from "./Developer";
 import PetPage from "./PetPage";
-import Color from "../constants/color";
+import Color from "../Constants/Color";
 import { Pressable, Text, View, Image, StyleSheet } from "react-native";
 import LogoImage from "../../assets/images/peti_logo.png"
 import PetTodayPage from "./PetTodayPage";
@@ -12,7 +12,6 @@ import PetCalenderPage from "./PetCalenderPage";
 import NotificationPage from "./NotificationPage";
 import PetCreatePage00 from "./PetCreatePage00";
 import PetCreatePage01 from "./PetCreatePage01";
-import PetCreateResult from "./PetCreateResultPage";
 import PetCreateResultPage from "./PetCreateResultPage";
 import LoginPage from "./LoginPage";
 

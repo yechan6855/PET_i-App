@@ -1,5 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { RootStackParamList } from '.';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useNavigation } from '@react-navigation/native';
 
 const styles = StyleSheet.create({
     container: {
@@ -29,11 +32,16 @@ const styles = StyleSheet.create({
     }
 })
 
+
+
 function PetCreateResultPage(){
+    const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>()
     return(
         <View style={styles.container}>
             <Text style={styles.title}>추가되었습니다.</Text>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity 
+                onPress={()=> navigation.navigate('Developer')} 
+                style={styles.button}>
                 <Text style={styles.buttonText}>완료</Text>
             </TouchableOpacity>
         </View>
