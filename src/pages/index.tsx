@@ -4,7 +4,7 @@ import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import PetList from "./PetList";
 import Developer from "./Developer";
 import PetPage from "./PetPage";
-import Color from "../constants/color";
+import Color from "../Constants/Color.ts";
 import { Pressable, Text, View, Image, StyleSheet } from "react-native";
 import LogoImage from "../../assets/images/peti_logo.png"
 import PetTodayPage from "./PetTodayPage";
@@ -15,6 +15,7 @@ import PetCreatePage01 from "./PetCreatePage01";
 import PetCreateResult from "./PetCreateResultPage";
 import PetCreateResultPage from "./PetCreateResultPage";
 import LoginPage from "./LoginPage";
+import UserMenuList from "./UserMenu.tsx";
 
 export type RootStackParamList = {
     Developer: undefined;
@@ -27,6 +28,7 @@ export type RootStackParamList = {
     PetCreate01: undefined;
     PetCreateResult: undefined;
     Login : undefined;
+    UserMenu : undefined;
 }
 interface PageConfig
 {
@@ -76,6 +78,10 @@ const data : ReadonlyArray<PageConfig> = Object.freeze([
         endPoint : "Login",
         component : LoginPage
     },
+    {
+        endPoint : "UserMenu" ,
+        component : UserMenuList
+    }
 ])
 const Stack = createNativeStackNavigator<RootStackParamList>()
 
