@@ -46,6 +46,11 @@ function Developer({navigation}: {navigation: NavigationProp<ParamListBase>}) {
             title = "UserMenu"
             onPress={()=> navigation.navigate('UserMenu')}
             />
+            
+            <Button
+            title = "Login_edit"
+            onPress={()=> navigation.navigate('LogInPageEdit')}
+            />
 
             
         </View>

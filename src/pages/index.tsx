@@ -16,6 +16,7 @@ import PetCreateResult from "./PetCreateResultPage";
 import PetCreateResultPage from "./PetCreateResultPage";
 import LoginPage from "./LoginPage";
 import UserMenuList from "./UserMenu.tsx";
+import LoginPageEdit from "./LogInPageEdit.tsx";
 
 export type RootStackParamList = {
     Developer: undefined;
@@ -29,6 +30,7 @@ export type RootStackParamList = {
     PetCreateResult: undefined;
     Login : undefined;
     UserMenu : undefined;
+    LogInPageEdit : undefined;
 }
 interface PageConfig
 {
@@ -36,6 +38,7 @@ interface PageConfig
     component : React.ComponentType<any>;
     option? : NativeStackNavigationOptions;
 }
+
 /// 모든 페이지 라우터의 상수 (모든 페이지의 신)
 const data : ReadonlyArray<PageConfig> = Object.freeze([
     {
@@ -81,6 +84,10 @@ const data : ReadonlyArray<PageConfig> = Object.freeze([
     {
         endPoint : "UserMenu" ,
         component : UserMenuList
+    },
+    {
+        endPoint : "LogInPageEdit" ,
+        component : LoginPageEdit
     }
 ])
 const Stack = createNativeStackNavigator<RootStackParamList>()

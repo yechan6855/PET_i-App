@@ -1,4 +1,3 @@
-// UserMenuList.js
 import React from 'react';
 import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import backButtonImage from '../../assets/images/backbtn.png';
@@ -17,8 +16,7 @@ const styles = StyleSheet.create({
     userName: {
         fontSize: 22,
         fontWeight: 'bold',
-        marginTop: 10,
-        marginStart: 10,
+        margin:10
         //backgroundColor: '#ffffff',
     },
     sectionText: {
