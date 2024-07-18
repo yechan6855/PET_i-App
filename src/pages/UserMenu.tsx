@@ -12,7 +12,6 @@ const styles = StyleSheet.create({
     container: {
         margin: 20,
         height: '100%',
-        //backgroundColor: '#5f5f5f',
     },
     userName: {
         fontSize: 22,
@@ -26,6 +25,7 @@ const styles = StyleSheet.create({
         marginStart: 10,
         marginTop: 20,
         //backgroundColor: '#d2ea2d',
+        fontWeight : 'black'
     },
     backBtnSize: {
         width: 30,
@@ -50,26 +50,24 @@ const styles = StyleSheet.create({
         width: '100%',
         flex: 1,
         flexDirection: 'column',
+        alignItems : 'center'
     },
     userSchedule: {
         flex: 1,
-        //backgroundColor: 'white',
+        width : '100%',
         flexDirection: 'row',
         alignItems: 'center',
         marginBottom: 10, // Add some margin to separate items
-        padding: 10, // Add some padding for better layout
+        padding: 10, // Add some padding for better layout,,
     },
     scheduleImageSize: {
-        width: 30,
-        height: 30,
-        margin: 20,
-        marginTop: 30,
+        width: 40,
+        height: 40,
     },
     serviceName: {
-        fontSize: 15,
+        fontSize: 16,
         fontWeight: 'bold',
-        alignSelf: 'flex-start',
-        marginTop: 32,
+        marginLeft : 16
     },
 });
 
