@@ -80,12 +80,6 @@ interface UserInform {
 function UserMenuList({ userName }: UserInform) {
     return (
         <ScrollView style={styles.container}>
-            <TouchableOpacity style={styles.backBtnSize}>
-                <Image
-                    source={backButtonImage}
-                    style={styles.backBtn}
-                />
-            </TouchableOpacity>
 
             <Text style={styles.userName}>정예림</Text>
             

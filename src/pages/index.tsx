@@ -4,8 +4,8 @@ import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import PetList from "./PetList";
 import Developer from "./Developer";
 import PetPage from "./PetPage";
-import Color from "../Constants/Color.ts";
-import { Pressable, Text, View, Image, StyleSheet } from "react-native";
+import Color from "../constants/color.ts";
+import { Pressable, Text, View, Image, StyleSheet, TouchableOpacity } from "react-native";
 import LogoImage from "../../assets/images/peti_logo.png"
 import PetTodayPage from "./PetTodayPage";
 import PetCalenderPage from "./PetCalenderPage";
@@ -16,7 +16,7 @@ import PetCreateResult from "./PetCreateResultPage";
 import PetCreateResultPage from "./PetCreateResultPage";
 import LoginPage from "./LoginPage";
 import UserMenuList from "./UserMenu.tsx";
-
+import backButtonImage from '../../assets/images/backbtn.png';
 export type RootStackParamList = {
     Developer: undefined;
     PetList: undefined;
@@ -40,7 +40,8 @@ interface PageConfig
 const data : ReadonlyArray<PageConfig> = Object.freeze([
     {
         endPoint : "Developer",
-        component : Developer
+        component : Developer,
+        option : {}
     },
     {
         endPoint : "PetList",
@@ -98,11 +99,10 @@ export const Pages = () => {
                                 component={component}
                                 options={option || {
                                     headerStyle : {
-                                        backgroundColor : Color.ORANGE,
-                                        
+                                        backgroundColor : 'transparent',  
                                     },
-                                    headerTitle : LogoTitle,
-                                    headerBackVisible : false,
+                                    headerTitle : "",
+                                    headerLeft : BackButton
                                 }}
                             />
                         )
@@ -112,17 +112,24 @@ export const Pages = () => {
         </NavigationContainer>
     )
 }
-const LogoTitle = () => {
+const style = StyleSheet.create({
+    header : {
+        // backgroundColor : 'red'
+    },
+    backButtonImage : {
+        width : 30,
+        height : 30
+    }
+})
+const BackButton = () => {
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>()
     return (
-        <View>
-            <Pressable onPress={()=>{navigation.navigate("Developer")}}>
-                <Image style={{
-                    width : 80,
-                    height :29,
-                }} source={LogoImage}/>
-            </Pressable>
-        </View>
+        <TouchableOpacity style={style.header} onPress={navigation.goBack}>
+            <Image
+                style={style.backButtonImage}
+                source={backButtonImage}
+            />
+        </TouchableOpacity>
     )
 }
 export default {}
