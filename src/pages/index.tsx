@@ -1,9 +1,8 @@
 import React from "react";
 import { NativeStackNavigationOptions, NativeStackNavigationProp, createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
-//import PetList from "./PetList";
 import Developer from "./Developer";
-//import PetPage from "./PetPage";
+import Pet from "./PetPage";
 import Color from "../constants/color.ts";
 import { Pressable, Text, View, Image, StyleSheet, TouchableOpacity } from "react-native";
 import LogoImage from "../../assets/images/peti_logo.png"
@@ -23,15 +22,7 @@ import backButtonImage from '../../assets/images/backbtn.png';
 
 export type RootStackParamList = {
     Developer: undefined;
-    PetList: undefined;
     Pet: undefined;
-    PetToday: undefined;
-    PetCalender: undefined;
-    Notification: undefined;
-    PetCreate00: undefined;
-    PetCreate01: undefined;
-    PetCreateResult: undefined;
-    Login : undefined;
     UserMenu : undefined;
     LogInPageEdit : undefined;
 }
@@ -49,49 +40,18 @@ const data : ReadonlyArray<PageConfig> = Object.freeze([
         component : Developer,
         option : {}
     },
-  /*  {
-        endPoint : "PetList",
-        component : PetList
-    },
-    {
-        endPoint : "Pet",
-        component : PetPage
-    },
-    {
-        endPoint : "PetToday",
-        component : PetTodayPage
-    },
-    {
-        endPoint : "PetCalender",
-        component : PetCalenderPage
-    },
-    {
-        endPoint : "Notification",
-        component : NotificationPage
-    },
-    {
-        endPoint : "PetCreate00",
-        component : PetCreatePage00
-    },
-    {
-        endPoint : "PetCreate01",
-        component : PetCreatePage01
-    },
-    {
-        endPoint : "PetCreateResult",
-        component : PetCreateResultPage
-    },
-    {
-        endPoint : "Login",
-        component : LoginPage
-    }*/
     {
         endPoint : "UserMenu" ,
         component : UserMenuList
     },
+
     {
-        endPoint : "LogInPageEdit" ,
+        endPoint : "LogInPageEdit",
         component : LoginPageEdit
+    },
+    {
+        endPoint : "PetPage",
+        component : Pet
     }
 ])
 const Stack = createNativeStackNavigator<RootStackParamList>()

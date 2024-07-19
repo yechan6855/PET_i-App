@@ -18,7 +18,8 @@ function Developer({navigation}: {navigation: NavigationProp<ParamListBase>}) {
             />
 
             <Button
-            title = "Pet"            
+            title = "Pet" 
+            onPress={()=> navigation.navigate('PetPage')}           
             />
 
             
