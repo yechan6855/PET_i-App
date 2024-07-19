@@ -22,6 +22,11 @@ function Developer({navigation}: {navigation: NavigationProp<ParamListBase>}) {
             onPress={()=> navigation.navigate('PetPage')}           
             />
 
+            <Button
+            title="PetList"
+            onPress={()=> navigation.navigate('PetListPage')}
+            />
+
             
         </View>
     );
