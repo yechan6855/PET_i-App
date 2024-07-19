@@ -1,20 +1,20 @@
 import React from "react";
 import { NativeStackNavigationOptions, NativeStackNavigationProp, createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
-import PetList from "./PetList";
+//import PetList from "./PetList";
 import Developer from "./Developer";
-import PetPage from "./PetPage";
+//import PetPage from "./PetPage";
 import Color from "../constants/color.ts";
 import { Pressable, Text, View, Image, StyleSheet, TouchableOpacity } from "react-native";
 import LogoImage from "../../assets/images/peti_logo.png"
-import PetTodayPage from "./PetTodayPage";
+/*import PetTodayPage from "./PetTodayPage";
 import PetCalenderPage from "./PetCalenderPage";
 import NotificationPage from "./NotificationPage";
 import PetCreatePage00 from "./PetCreatePage00";
 import PetCreatePage01 from "./PetCreatePage01";
 import PetCreateResult from "./PetCreateResultPage";
 import PetCreateResultPage from "./PetCreateResultPage";
-import LoginPage from "./LoginPage";
+import LoginPage from "./LoginPage"; */
 import UserMenuList from "./UserMenu.tsx";
 import LoginPageEdit from "./LogInPageEdit.tsx";
 
@@ -49,7 +49,7 @@ const data : ReadonlyArray<PageConfig> = Object.freeze([
         component : Developer,
         option : {}
     },
-    {
+  /*  {
         endPoint : "PetList",
         component : PetList
     },
@@ -84,7 +84,7 @@ const data : ReadonlyArray<PageConfig> = Object.freeze([
     {
         endPoint : "Login",
         component : LoginPage
-    },
+    }*/
     {
         endPoint : "UserMenu" ,
         component : UserMenuList
