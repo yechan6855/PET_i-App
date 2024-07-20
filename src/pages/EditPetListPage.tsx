@@ -1,7 +1,7 @@
 import React from 'react';
 import { Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, ImageBackground, Button } from 'react-native';
 
-import editIcon from '../../assets/images/edit-icon.png';
+
 import petProfileImg from '../../assets/images/test-dogprofileimg.png';
 
 const styles = StyleSheet.create({
