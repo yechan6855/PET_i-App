@@ -2,7 +2,7 @@ import { Text, View, StyleSheet, Image } from "react-native"
 import { PetList } from "../components/PetList"
 
 import editIconImage from '../../assets/images/edit-icon.png'
-import style from "../constants/style"
+import style from "../Constants/Style"
 const styles = StyleSheet.create({
     container : {
         // backgroundColor : "red",

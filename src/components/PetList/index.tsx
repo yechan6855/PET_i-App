@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, ScrollView, Image } from 'react-native'
 export {}
 import ProfileImage from '../../../assets/images/test-dogprofileimg.png'
-import color from '../../constants/color'
+import Color from '../../Constants/Color'
 
 const style = StyleSheet.create({    
     scroll : {        
@@ -15,7 +15,7 @@ const style = StyleSheet.create({
         
     },
     item: {
-        backgroundColor: color.BASIG,
+        backgroundColor: Color.BASIG,
         width : '48%',
         height : 200,
         marginBottom : 20,
