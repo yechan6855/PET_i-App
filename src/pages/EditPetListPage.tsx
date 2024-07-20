@@ -87,6 +87,14 @@ const styles = StyleSheet.create({
 
 });
 
+interface PetListItemProp
+{
+    petID : string,
+    petName : string,
+    petBirthdate : string,
+    petProfileUrl : string
+}
+
 function EditPetList()
 {
     return(
@@ -115,21 +123,7 @@ function EditPetList()
                     </View>
                 </View>
 
-                <View style = {styles.petListItemContainer}>
-                    <View style = {styles.deletePetItemSection}>
-                        <TouchableOpacity
-                        style = {styles.deletePetBtn}
-                        />
-                    </View>
-                    <Image
-                    source={petProfileImg}
-                    style = {styles.petListItemImg}
-                    />
-                    <View style = {styles.petListItemTextContainer}>
-                        <Text style = {styles.petListItemTest}>살구</Text>
-                        <Text style = {styles.petListItemTest}>2014.09.03</Text>
-                    </View>
-                </View>
+
 
                 
                 </View>
@@ -153,6 +147,25 @@ function EditPetList()
         </View>
 
     );
+}
+
+function PetListItem(prop : PetListItemProp)
+{
+    <View style = {styles.petListItemContainer}>
+    <View style = {styles.deletePetItemSection}>
+        <TouchableOpacity
+        style = {styles.deletePetBtn}
+        />
+    </View>
+    <Image
+    source={{uri: prop.petProfileUrl}}
+    style = {styles.petListItemImg}
+    />
+    <View style = {styles.petListItemTextContainer}>
+        <Text style = {styles.petListItemTest}>{prop.petName}</Text>
+        <Text style = {styles.petListItemTest}>{prop.petBirthdate}</Text>
+    </View>
+</View>
 }
 
 export default EditPetList;
