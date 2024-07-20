@@ -3,15 +3,15 @@ import { NativeStackNavigationOptions, NativeStackNavigationProp, createNativeSt
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import Developer from "./Developer";
 import Pet from "./PetPage";
-import Color from "../constants/color.ts";
+import Color from "../constants/color";
 import { Pressable, Text, View, Image, StyleSheet, TouchableOpacity } from "react-native";
 import LogoImage from "../../assets/images/peti_logo.png"
-import UserMenuList from "./UserMenu.tsx";
-import LoginPageEdit from "./LogInPageEdit.tsx";
-import PetList from "./PetListPage.tsx";
-import CreatePet from "./CreatePetPage.tsx";
-import EditPetList from "./EditPetListPage.tsx";
-import Signin from "./SigninPage.tsx";
+import UserMenuList from "./UserMenu";
+import LoginPageEdit from "./LogInPageEdit";
+import PetList from "./PetListPage";
+import CreatePet from "./CreatePetPage";
+import EditPetList from "./EditPetListPage";
+import Signin from "./SigninPage";
 import backButtonImage from '../../assets/images/backbtn.png';
 
 export type RootStackParamList = {
