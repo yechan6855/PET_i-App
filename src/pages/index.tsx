@@ -53,7 +53,10 @@ const data : ReadonlyArray<PageConfig> = Object.freeze([
     },
     {
         endPoint : "PetList",
-        component : PetList
+        component : PetList,
+        option : {
+            headerShown : false
+        }
     },
     {
         endPoint : "CreatePet",
