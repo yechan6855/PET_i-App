@@ -15,17 +15,17 @@ const styles = StyleSheet.create({
     Container: {
         //최상위 부모_상단 / 하단 공백, 수직정렬
         width : '100%',
-        height: '80%',
-        marginTop:40,
-        marginBottom:20,
+        height: '100%',
+        paddingTop : 100,
         flexDirection: 'column',
-        //backgroundColor : '#d2ea2d'
+        justifyContent : 'flex-start',
+        // backgroundColor : '#d2ea2d'
     },
     TopTextLogo:{
         height: 50,
         width: '100%',
         resizeMode: 'contain',
-        //backgroundColor : '#2de8ea'
+        // backgroundColor : '#2de8ea'
     },
     TextInputContainer: {
         height: '30%',
@@ -65,47 +65,45 @@ const styles = StyleSheet.create({
 
 
     LoginBtnContainer:{
-        height:'25%',
-        marginTop:'10%',
         flexDirection: 'column',
-        padding : '6%',
-        //backgroundColor: '#2de8ea',
+        width : '80%',
+        alignSelf : 'center',
+        // backgroundColor : 'red'
     },
 
     LoginBtn:{
-        height:'50%',
         borderRadius:20,
-        padding : 6,
-        backgroundColor:'orange',
-        margin : 5
+        backgroundColor:'#EA5A2D',
+        paddingTop : 12,
+        paddingBottom : 12,
+        marginBottom : 16
     },
     SigninBtn:{
-        height:'50%',
         borderRadius:20,
         backgroundColor:'white',
-        padding : 6,
-        margin : 5
+        paddingTop : 12,
+        paddingBottom : 12,
     },
     LoginBtnText : {
-        fontSize:15,
+        fontSize: 22 ,
         fontWeight: 'bold',
         color : 'white',
-        textAlign: 'center',
+        textAlign : 'center',
+        
     },
     SigninBtnText : {
-        fontSize:15,
+        fontSize: 22,
         fontWeight: 'bold',
         textAlign: 'center',
     },
 
     TextFindingIDPw : {
         textAlign : 'center',
-        color : 'white'
+        color : 'white',
+        fontSize : 18
     },
     FindingIDPw : {
-        position : 'absolute',
-        bottom: 0,
-        width: '100%'
+        marginTop : 50,
     }
 
 
@@ -151,12 +149,10 @@ function LoginPageEdit() {
             </View>
             
             <View style = {styles.FindingIDPw}>
-            <TouchableOpacity>
-                <Text style = {styles.TextFindingIDPw}>ID / 비밀번호 찾기</Text>
-            </TouchableOpacity>
+                <TouchableOpacity>
+                    <Text style = {styles.TextFindingIDPw}>ID / 비밀번호 찾기 &gt;</Text>
+                </TouchableOpacity>
             </View>
-
-
 
         </View>
         </ImageBackground>
