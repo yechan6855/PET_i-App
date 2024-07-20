@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
         backgroundColor : '#6d1a00'
     },
 
-    birthDateText :{
+    sectionTitle :{
         width : '100%',
         height : '30%',
         backgroundColor : '#ff00de'
@@ -118,8 +118,33 @@ const styles = StyleSheet.create({
     breedSection :{
         width : '100%',
         height : '20%',
+        flexDirection : 'column',
+        justifyContent : 'center',
+        alignItems:'center',
         backgroundColor : '#6d1a00'
     },
+
+    breedContainerUpper :{
+        width : '100%',
+        height : '50%',
+        flexDirection: 'row',
+        justifyContent : 'space-between',
+    },
+    breedContainerLower :{
+        width : '100%',
+        height : '50%',
+        flexDirection: 'row',
+        justifyContent : 'space-between',
+    },
+    breedListItem:{
+        width : '22%',
+        height : '60%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#3fea2d',
+
+    },
+    
     
 
     createBtn : {
@@ -181,7 +206,7 @@ function CreatePet()
 
                 <View style = {styles.birthdateSection}>
                     <Text
-                    style = {styles.birthDateText}>
+                    style = {styles.sectionTitle}>
                         생년월일
                     </Text>
                     <View style ={styles.birthDateInputSection}>
@@ -208,6 +233,44 @@ function CreatePet()
                 </View>
 
                 <View style = {styles.breedSection}>
+
+                    <Text style = {styles.sectionTitle}>품종</Text>
+
+                    <View style = { styles.breedContainerUpper}>
+
+                        <TouchableOpacity style = {styles.breedListItem}>
+                            <Text>푸들</Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity style = {styles.breedListItem}>
+                            <Text>말티즈</Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity style = {styles.breedListItem}>
+                            <Text>포메라니안</Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity style = {styles.breedListItem}>
+                            <Text>믹스</Text>
+                        </TouchableOpacity>
+                    </View>
+
+                    <View style = {styles.breedContainerLower}>
+
+                        <TouchableOpacity style = {styles.breedListItem}>
+                            <Text>닥스훈트</Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity style = {styles.breedListItem}>
+                            <Text>골든리트리버</Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity style = {styles.breedListItem}>
+                            <Text>기타</Text>
+                        </TouchableOpacity>
+
+
+                    </View>
                     
                 </View>
 
