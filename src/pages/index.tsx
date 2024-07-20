@@ -6,17 +6,10 @@ import Pet from "./PetPage";
 import Color from "../constants/color.ts";
 import { Pressable, Text, View, Image, StyleSheet, TouchableOpacity } from "react-native";
 import LogoImage from "../../assets/images/peti_logo.png"
-/*import PetTodayPage from "./PetTodayPage";
-import PetCalenderPage from "./PetCalenderPage";
-import NotificationPage from "./NotificationPage";
-import PetCreatePage00 from "./PetCreatePage00";
-import PetCreatePage01 from "./PetCreatePage01";
-import PetCreateResult from "./PetCreateResultPage";
-import PetCreateResultPage from "./PetCreateResultPage";
-import LoginPage from "./LoginPage"; */
 import UserMenuList from "./UserMenu.tsx";
 import LoginPageEdit from "./LogInPageEdit.tsx";
 import PetList from "./PetListPage.tsx";
+import CreatePet from "./CreatePetPage.tsx";
 
 
 import backButtonImage from '../../assets/images/backbtn.png';
@@ -27,6 +20,7 @@ export type RootStackParamList = {
     UserMenu : undefined;
     LogInPageEdit : undefined;
     PetList : undefined;
+    CreatePet : undefined;
 }
 interface PageConfig
 {
@@ -52,12 +46,16 @@ const data : ReadonlyArray<PageConfig> = Object.freeze([
         component : LoginPageEdit
     },
     {
-        endPoint : "PetPage",
+        endPoint : "Pet",
         component : Pet
     },
     {
-        endPoint : "PetListPage",
+        endPoint : "PetList",
         component : PetList
+    },
+    {
+        endPoint : "CreatePet",
+        component : CreatePet
     }
 ])
 const Stack = createNativeStackNavigator<RootStackParamList>()
