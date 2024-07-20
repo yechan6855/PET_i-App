@@ -10,6 +10,7 @@ import UserMenuList from "./UserMenu.tsx";
 import LoginPageEdit from "./LogInPageEdit.tsx";
 import PetList from "./PetListPage.tsx";
 import CreatePet from "./CreatePetPage.tsx";
+import EditPetList from "./EditPetListPage.tsx";
 
 
 import backButtonImage from '../../assets/images/backbtn.png';
@@ -21,6 +22,7 @@ export type RootStackParamList = {
     LogInPageEdit : undefined;
     PetList : undefined;
     CreatePet : undefined;
+    EditPetList : undefined;
 }
 interface PageConfig
 {
@@ -56,6 +58,10 @@ const data : ReadonlyArray<PageConfig> = Object.freeze([
     {
         endPoint : "CreatePet",
         component : CreatePet
+    },
+    {
+        endPoint : "EditPetList",
+        component : EditPetList
     }
 ])
 const Stack = createNativeStackNavigator<RootStackParamList>()
