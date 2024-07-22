@@ -5,7 +5,7 @@ import editIconImage from '../../assets/images/edit-icon.png'
 import style from "../Constants/Style"
 const styles = StyleSheet.create({
     container : {
-        // backgroundColor : "red",
+        //backgroundColor : "red",
         flex : 1,
         margin : style.MARGIN,
         marginBottom : style.MARGIN + 20,

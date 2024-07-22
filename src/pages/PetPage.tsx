@@ -114,8 +114,7 @@ const styles = StyleSheet.create({
     },
     footerIcon : {
         width : '20%',
-        height : '100%',
-   
+        height : '100%'
     },
     footerIconImage : {
         width : '100%',
