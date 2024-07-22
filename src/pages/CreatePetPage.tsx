@@ -3,6 +3,7 @@ import { Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View,
 
 import testProfileImage from '../../assets/images/test-dogprofileimg.png';
 import { Section } from '../components';
+import RNPickerSelect from 'react-native-picker-select'
 
 
 const styles = StyleSheet.create({
@@ -152,6 +153,19 @@ const styles = StyleSheet.create({
         width : '100%',
         height : '10%',
         backgroundColor : '#3fea2d'
+    },
+
+    birth : {
+        flexDirection : "row",
+        // backgroundColor : "red",
+        alignItems : 'center',
+        justifyContent : "center"
+    },
+    birthChild : {
+        backgroundColor : "red",        
+    },
+    birthChildText : {
+        fontSize : 24
     }
 
 
@@ -205,10 +219,23 @@ function CreatePet()
 
                 </View>
                 <Section
-                    style={{}}
                     title='생년월일'
                 >
-                    <Text>1</Text>
+                    <View>
+                        <Text>YYYY:MM:DD</Text>
+                    </View>
+                </Section>
+                <Section
+                    title='품종'
+                >
+                    <RNPickerSelect                        
+                        onValueChange={(value) => console.log(value)}
+                        items={[
+                            { label: '말티즈', value: '말티즈' },
+                            { label: 'Baseball', value: 'baseball' },
+                            { label: 'Hockey', value: 'hockey' },
+                        ]}
+                        />
                 </Section>
 {/* 
                 <View style = {styles.birthdateSection}>

@@ -21,9 +21,7 @@ export function Section({children, style, title} : {children : React.ReactNode, 
             <View style={styles.sectionTitle}>
                 <Text style={styles.sectionTitleText}>{title}</Text>
             </View>
-            <View>
-                { children }
-            </View>            
+            { children }
         </View>
 
     )
