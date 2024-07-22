@@ -1,5 +1,6 @@
 import React from 'react';
-import { Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, ImageBackground, Button } from 'react-native';
+import { Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, ImageBackground, Button, KeyboardAvoidingView, Platform } from 'react-native';
+import Color from '../Constants/Color';
 
 const styles = StyleSheet.create({
 
@@ -9,7 +10,7 @@ const styles = StyleSheet.create({
         flexDirection : 'column',
         justifyContent : 'space-between',
         //alignItems : 'center',
-        backgroundColor : '#ddd'
+        // backgroundColor : '#ddd'
     },
 
     userInformSection : {
@@ -17,29 +18,31 @@ const styles = StyleSheet.create({
         height : '40%',
         justifyContent : 'space-between',
         alignItems : 'center',
-        backgroundColor : '#6d1a00'
+        // backgroundColor : '#6d1a00'
     },
     informTextSection : {
         width : '90%',
         height : '20%',
-        justifyContent : 'flex-start',
-        backgroundColor : '#3fea2d'
+        justifyContent : 'center',        
+        // backgroundColor : '#3fea2d',
     },
     informText :{
-        textAlign : 'left'
+        // backgroundColor : 'red'        
+        fontWeight : '900',
+        fontSize : 18
     },
 
     userIDSection : {
         width : '100%',
-        height : '35%',
+        height : '30%',
         justifyContent : 'space-between',
         alignItems : 'center',
-        backgroundColor : '#6d1a00'
+        // backgroundColor : '#6d1a00'
 
     },
     userPWSection :{
         width : '100%',
-        height : '60%',
+        height : '50%',
         flexDirection : 'column',
         justifyContent : 'center',
         alignItems : 'center',
@@ -48,9 +51,9 @@ const styles = StyleSheet.create({
     pwTextInput :{
         width : '90%',
         height : '40%',
-        textAlign : 'left',
-        borderBottomWidth: 1,
-        borderBottomColor: '#ddd',
+        borderBottomWidth: 2,
+        borderBottomColor: Color.ORANGE,
+        fontSize : 18
 
     },
     footerBtnSection : {
@@ -61,29 +64,39 @@ const styles = StyleSheet.create({
         //bottom: 0,
         //left: 0,
         //right: 0,
-        backgroundColor : '#6d1a00'
+        // backgroundColor : '#6d1a00'
     },
     textInput:{
         width : '90%',
-        height : '25%',
+        // height : '25%',
         textAlign : 'left',
-        borderBottomWidth: 1,
-        borderBottomColor: '#ddd',
-        //backgroundColor : '#d2ea2d'
+        borderBottomWidth: 2,
+        borderBottomColor: Color.ORANGE,
+        //backgroundColor : '#d2ea2d',
+        padding : 6,
+        fontSize : 18
     },
     sendCodeBtn :{
         width : '80%',
-        height : '15%',
+        height : '12%',
         justifyContent : 'center',
         alignItems : 'center',
-        backgroundColor : '#3fea2d'
+        backgroundColor : Color.ORANGE,
+        borderRadius : 10
     },
     signinBtn :{
         width : '80%',
-        height : '100%',
+        // height : '100%',        
         justifyContent : 'center',
         alignItems : 'center',
-        backgroundColor : '#3fea2d'
+        backgroundColor : Color.ORANGE,
+        borderRadius : 50
+    },
+    btnText : {
+        fontSize : 18,
+        fontWeight : '900',
+        color : "#fff",
+        padding : 12
     }
 
 
@@ -91,7 +104,10 @@ const styles = StyleSheet.create({
 
 function Signin() {
     return(
-        <View style = {styles.container}>
+        <KeyboardAvoidingView
+            style={styles.container}
+            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        >
 
             <View style ={styles.userInformSection}>
                 
@@ -104,16 +120,20 @@ function Signin() {
                 <TextInput
                         style = {styles.textInput}
                         placeholder="이름을 입력해주세요"
-                        placeholderTextColor='orange'
+                        placeholderTextColor='gray'
                 />
                 <TextInput
                         style = {styles.textInput}
                         placeholder="전화번호를 입력해주세요"
-                        placeholderTextColor='orange'
+                        placeholderTextColor='gray'
                 />
 
                 <TouchableOpacity style ={styles.sendCodeBtn}>
-                    <Text>인증번호 전송</Text>
+                    <Text style={{
+                        color : "#ffffff",
+                        fontWeight : '900',
+                        fontSize : 18,                        
+                    }}>인증번호 전송</Text>
                 </TouchableOpacity>
 
 
@@ -128,18 +148,15 @@ function Signin() {
                 <TextInput
                     style = {styles.textInput}
                     placeholder="이메일 주소를 입력해주세요"
-                    placeholderTextColor='orange'
                 />
                 <View style = {styles.userPWSection}>
                     <TextInput
                         style = {styles.pwTextInput}
                         placeholder="비밀 번호 입력"
-                        placeholderTextColor='orange'
                     />
                     <TextInput
                         style = {styles.pwTextInput}
                         placeholder="비밀 번호 확인"
-                        placeholderTextColor='orange'
                     />
                 </View>
 
@@ -151,14 +168,15 @@ function Signin() {
 
             <View style = { styles.footerBtnSection}>
                 <TouchableOpacity
-                    style = {styles.signinBtn} >
-                    <Text>시작하기</Text>
+                    style = {styles.signinBtn}
+                >
+                    <Text style={styles.btnText}>시작</Text>
                 </TouchableOpacity>
        
 
         </View>
         
-        </View>
+        </KeyboardAvoidingView>
     );
 }
 
