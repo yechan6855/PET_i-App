@@ -2,6 +2,7 @@ import React from 'react';
 import { Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, ImageBackground, Button } from 'react-native';
 
 import testProfileImage from '../../assets/images/test-dogprofileimg.png';
+import { Section } from '../components';
 
 
 const styles = StyleSheet.create({
@@ -17,7 +18,7 @@ const styles = StyleSheet.create({
     innerContainer : {
         height : '95%',
         width : '90%',
-        alignItems : 'center',
+        alignItems : 'stretch',
         flexDirection : 'column',
         justifyContent: 'space-between',
         backgroundColor : 'black'
@@ -203,7 +204,13 @@ function CreatePet()
                     </View>
 
                 </View>
-
+                <Section
+                    style={{}}
+                    title='생년월일'
+                >
+                    <Text>1</Text>
+                </Section>
+{/* 
                 <View style = {styles.birthdateSection}>
                     <Text
                     style = {styles.sectionTitle}>
@@ -230,49 +237,7 @@ function CreatePet()
                         <Text>일</Text>
                     </View>
 
-                </View>
-
-                <View style = {styles.breedSection}>
-
-                    <Text style = {styles.sectionTitle}>품종</Text>
-
-                    <View style = { styles.breedContainerUpper}>
-
-                        <TouchableOpacity style = {styles.breedListItem}>
-                            <Text>푸들</Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity style = {styles.breedListItem}>
-                            <Text>말티즈</Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity style = {styles.breedListItem}>
-                            <Text>포메라니안</Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity style = {styles.breedListItem}>
-                            <Text>믹스</Text>
-                        </TouchableOpacity>
-                    </View>
-
-                    <View style = {styles.breedContainerLower}>
-
-                        <TouchableOpacity style = {styles.breedListItem}>
-                            <Text>닥스훈트</Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity style = {styles.breedListItem}>
-                            <Text>골든리트리버</Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity style = {styles.breedListItem}>
-                            <Text>기타</Text>
-                        </TouchableOpacity>
-
-
-                    </View>
-                    
-                </View>
+                </View> */}
 
                 <TouchableOpacity style = {styles.createBtn} />
 
