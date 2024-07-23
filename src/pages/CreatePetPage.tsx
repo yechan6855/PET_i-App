@@ -4,6 +4,8 @@ import { Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View,
 import testProfileImage from '../../assets/images/test-dogprofileimg.png';
 import { Section } from '../components';
 import RNPickerSelect from 'react-native-picker-select'
+import { BirthDay, PetProfileForm } from '../components/CreatePet';
+import Color from '../Constants/Color';
 
 
 const styles = StyleSheet.create({
@@ -11,7 +13,7 @@ const styles = StyleSheet.create({
     container :{
         height : '100%',
         width : '100%',
-        backgroundColor : '#ea5a2d',
+        backgroundColor : '#ffffff',
         alignItems : 'center',
         justifyContent : 'center'
     },
@@ -22,38 +24,46 @@ const styles = StyleSheet.create({
         alignItems : 'stretch',
         flexDirection : 'column',
         justifyContent: 'space-between',
-        backgroundColor : 'black'
+        // backgroundColor : 'black'
     },
 
     guideTextContainer : {
-        width : '100%',
-        height : '10%',
-        backgroundColor : '#6d1a00'
+        // width : '100%',
+        // height : '10%',
+        // backgroundColor : '#6d1a00'
+        
+    },
+    guideText : {
+        fontSize : 18,
+        fontWeight : '900'
     },
 
     profileContainer : {
-        width : '100%',
-        height : '30%',
+        flex : 1,
         flexDirection : 'row',
-        backgroundColor : '#6d1a00',
         justifyContent: 'space-between',
-
+        alignItems : "center",        
     },
 
     profileImgContainer : {
         width : '45%',
-        height : '100%',
-        backgroundColor : '#ff00de'
+             
+        alignItems : "center",
+        // backgroundColor : "red",
+        justifyContent : "center"
     },
     profileImageSection :{
-        width : '100%',
-        height : '80%',
-        resizeMode : 'contain'
+        width : "100%",
+        height : "60%",        
     },
-    profileImgUploadBtn : {
-        width : '100%',
-        height : '20%',
-        backgroundColor : '#3fea2d'
+    profileImgUploadBtn : {        
+        backgroundColor : Color.ORANGE,
+        alignSelf : "stretch",
+        marginTop : 8,
+        justifyContent : "center",
+        alignItems : "center",
+        padding : 8,
+        borderRadius : 8           
     },
 
     nameGenderSection : {
@@ -148,25 +158,12 @@ const styles = StyleSheet.create({
     },
     createBtn : {
         width : '100%',
-        height : '10%',
-        backgroundColor : '#3fea2d'
+        // height : '10%',
+        backgroundColor : Color.ORANGE,
+        borderRadius : 20
     },
 
-    birth : {
-        flexDirection : "row",
-        justifyContent : "center"
-    },
-    birthChild : {
-        borderColor : "black",
-        // borderWidth : 1,
-    },
-    birthChildInput : {
-        padding : 0,
-        fontSize : 36,
-        fontWeight : '900',
-        textAlign : "left",
-        paddingHorizontal : 14
-    },
+    
 
 
 });
@@ -188,58 +185,44 @@ function CreatePet()
             <View style = {styles.innerContainer}>
 
                 <View style = { styles.guideTextContainer}>
-                    <Text>등록을 위해</Text>
-                        <Text>아이의 정보를 입력해주세요!</Text>
+                    <Text style = { styles.guideText}>등록을 위해</Text>
+                    <Text style = { styles.guideText}>아이의 정보를 입력해주세요!</Text>
                 </View>
 
                 <View style = {styles.profileContainer}>
                     <View style = {styles.profileImgContainer}>
-                        <Image
-                        style = {styles.profileImageSection}
-                        source={testProfileImage}
-                        />
+                        <View style = {styles.profileImageSection}>
+                            <Image
+                                style={{
+                                    width : "100%",
+                                    height : "100%",
+                                    borderRadius : 20
+                                }}
+                                source={testProfileImage}
+                            />
+                        </View>
                         <TouchableOpacity style = {styles.profileImgUploadBtn}>
+                            <Text style={{
+                                fontWeight : '600',
+                                color : "#ffffff"
+                            }}>프로필 업로드</Text>
                         </TouchableOpacity>
                     </View>
-
-
-                    <View style={styles.nameGenderSection}>
-                        <TextInput
-                        style = {styles.input}
-                        placeholder="이름을 입력해주세요"
-                        placeholderTextColor='white'
-                        />
-                        <View style ={styles.genderBtnSection}>
-                            <TouchableOpacity style = {styles.genderBtn}/>
-                            <TouchableOpacity style = {styles.genderBtn}/>
-                        </View>
-
-                    </View>
-
+                    <PetProfileForm/>
                 </View>
                 <Section
                     title='생년월일'
+                    style={{
+                        // flex :1
+                    }}
                 >
-                    <View style={styles.birth}>
-                        <View style={styles.birthChild}>
-                            <TextInput style={styles.birthChildInput} defaultValue='YYYY' maxLength={4} keyboardType='numeric'/>
-                        </View>
-                        <View style={styles.birthChild}>
-                            <Text style={styles.birthChildInput}>:</Text>
-                        </View>
-                        <View style={styles.birthChild}>
-                            <TextInput style={styles.birthChildInput} defaultValue='MM' maxLength={2} keyboardType='numeric'/>
-                        </View>
-                        <View style={styles.birthChild}>
-                            <Text style={styles.birthChildInput}>:</Text>
-                        </View>
-                        <View style={styles.birthChild}>
-                            <TextInput style={styles.birthChildInput} defaultValue='DD' maxLength={2} keyboardType='numeric'/>
-                        </View>
-                    </View>
+                    <BirthDay/>
                 </Section>
                 <Section
                     title='품종'
+                    style={{
+                        flex :1,
+                    }}
                 >
                     <RNPickerSelect                        
                         onValueChange={(value) => console.log(value)}
@@ -250,36 +233,15 @@ function CreatePet()
                         ]}
                         />
                 </Section>
-{/* 
-                <View style = {styles.birthdateSection}>
-                    <Text
-                    style = {styles.sectionTitle}>
-                        생년월일
-                    </Text>
-                    <View style ={styles.birthDateInputSection}>
-                        <TextInput 
-                        style={styles.birthYearInput}
-                        keyboardType="numeric"
-                        maxLength={4}
-                        placeholder="YYYY"/>
-                        <Text style = {styles.birthSectionText}>년</Text>
-                        <TextInput
-                        style = {styles.birthDateInput}
-                        keyboardType="numeric"
-                        maxLength={2}
-                        placeholder="MM"/>
-                        <Text>월</Text>
-                        <TextInput
-                        style = {styles.birthDateInput}
-                        keyboardType="numeric"
-                        maxLength={2}
-                        placeholder="DD"/>
-                        <Text>일</Text>
-                    </View>
-
-                </View> */}
-
-                <TouchableOpacity style = {styles.createBtn} />
+                <TouchableOpacity style={styles.createBtn}>
+                    <Text style={{
+                        fontSize : 18,
+                        color : "#ffffff",
+                        fontWeight : "600",
+                        textAlign : "center",
+                        paddingVertical :18
+                    }}>추가</Text>
+                </TouchableOpacity>
 
             </View>
             
