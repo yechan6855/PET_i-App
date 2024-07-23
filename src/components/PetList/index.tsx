@@ -12,7 +12,6 @@ const style = StyleSheet.create({
         flexDirection : 'row',
         justifyContent : 'space-between',
         flexWrap : "wrap",
-        
     },
     item: {
         backgroundColor: Color.BASIG,
