@@ -5,7 +5,7 @@ import deleteIcon from '../../../assets/images/x-icon.png'
 
 import Color from '../../Constants/Color'
 
-//import defaultProfilePicture 
+import defaultProfilePicture from '../../../assets/images/default-profile.png'
 
 //import PetListData from '../..petListData.ts' 이하 라인처럼 가져와야함
 import { petListTestData } from '../../data/petListData'
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
         width: 20,
         height: 20,
 
-    }
+    },
 })
 
 const petList = petListTestData
@@ -75,10 +75,12 @@ export function PetList() {
 function Item(prop : PetListItemProp) {
     return (
         <View style={styles.item}>
-            <Image
-                style = {styles.deleteBtn}
-                source={deleteIcon}
-            />
+   
+                <Image
+                    style = {styles.deleteBtn}
+                    source={deleteIcon}
+                />
+
             <View>
                 <Image
                     style={{
@@ -86,7 +88,7 @@ function Item(prop : PetListItemProp) {
                         height : 100,
                         borderRadius : 50
                     }}
-                    source={{uri: prop.profileImageUrl}}
+                    source={prop.profileImageUrl ? {uri : prop.profileImageUrl} : defaultProfilePicture}
 
                 />
             </View>

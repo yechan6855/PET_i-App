@@ -27,7 +27,7 @@ export const petListTestData : ReadonlyArray<Pet> = Object.freeze([
         "petId" : "3",
         "name" : "DDD",
         "birthdate" : "2002.12.26",
-        "profilePictureURL" : "https://cdn.pixabay.com/photo/2019/08/26/06/26/the-black-dog-4430887_1280.jpg"
+        "profilePictureURL" : null
     },
     {
         "userId" : "0000",
