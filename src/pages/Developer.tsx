@@ -30,7 +30,7 @@ function Developer({navigation}: {navigation: NavigationProp<ParamListBase>}) {
             
             <Button
             title = "Login"
-            onPress={()=> navigation.navigate('LogInPageEdit')}
+            onPress={()=> navigation.navigate('Login')}
             />
 
             <Button

@@ -1,9 +1,7 @@
 import React from 'react';
 import { Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, ImageBackground } from 'react-native';
-
 import textLogoWhite from '../../assets/images/peti-text-icon-w.png';
-
-const backgroundImage = require('../../assets/images/background.jpg');
+import backgroundImage from '../../assets/images/background.jpg';
 
 const styles = StyleSheet.create({
 
@@ -109,7 +107,7 @@ const styles = StyleSheet.create({
 
 });
 
-function LoginPageEdit() {
+function LoginPage() {
     return (
         <ImageBackground source={backgroundImage} style={styles.BackgroundImage} resizeMode="cover">
         <View style={styles.Container}>
@@ -160,4 +158,4 @@ function LoginPageEdit() {
     );
 }
 
-export default LoginPageEdit;
+export default LoginPage;
