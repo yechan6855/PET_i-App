@@ -1,9 +1,25 @@
 import { NavigationProp, ParamListBase } from '@react-navigation/native';
 import React from 'react';
-import {Button, View} from 'react-native';
+import {Button, Text, View} from 'react-native';
 
 
+const menu = [
+    {
+        name : "콜라",
+        price : 1500
+    },
+    {
+        name : "커피",
+        price : 1800
+    },
+    {
+        name : "환타",
+        price : 1700
+    },
+
+]
 function Developer({navigation}: {navigation: NavigationProp<ParamListBase>}) {
+    
     return (
         <View>
 
@@ -39,9 +55,31 @@ function Developer({navigation}: {navigation: NavigationProp<ParamListBase>}) {
             title="Signin"
             onPress={()=> navigation.navigate('Signin')}/>
 
+            {
+                menu.map((item)=>{
+                    return (
+                        <Item name={item.name} price={item.price}/>
+                    )
+                })
+            }
+            
             
         </View>
     );
+
+    function Item(prop : MenuProp) {
+        return (
+            <View>
+                <Text>{prop.name}</Text>
+                <Text>{prop.price}</Text>
+            </View>
+        )
+    }
+    
+}
+interface MenuProp {
+    name : string
+    price : number
 }
 
 export default Developer;
