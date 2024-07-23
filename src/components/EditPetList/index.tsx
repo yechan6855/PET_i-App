@@ -5,7 +5,7 @@ import deleteIcon from '../../../assets/images/x-icon.png'
 
 import Color from '../../Constants/Color'
 
-import defaultProfilePicture from '../../../assets/images/default-profile.png'
+//import defaultProfilePicture 
 
 //import PetListData from '../..petListData.ts' 이하 라인처럼 가져와야함
 import { petListTestData } from '../../data/petListData'
@@ -86,7 +86,7 @@ function Item(prop : PetListItemProp) {
                         height : 100,
                         borderRadius : 50
                     }}
-                    source= {defaultProfilePicture}
+                    source={{uri: prop.profileImageUrl}}
 
                 />
             </View>
