@@ -5,6 +5,11 @@ import deleteIcon from '../../../assets/images/x-icon.png'
 
 import Color from '../../Constants/Color'
 
+import defaultProfilePicture from '../../../assets/images/default-profile.png'
+
+//import PetListData from '../..petListData.ts' 이하 라인처럼 가져와야함
+import { petListTestData } from '../../data/petListData'
+
 const styles = StyleSheet.create({    
     scroll : {        
         //backgroundColor : 'red',
@@ -43,61 +48,24 @@ const styles = StyleSheet.create({
     }
 })
 
-const petListItems : PetListItemProp[] = [ //반복돌려서 출력
-    {
-        petId='0'
-        petName='똘복'
-        petBirth='2022.08.06'
-        profileImageUrl='https://cdn.pixabay.com/photo/2019/08/26/06/26/the-black-dog-4430887_1280.jpg'
-    },
-    {
-        petId='1'
-        petName='두걸'
-        petBirth='2016.05.05'
-        profileImageUrl='https://cdn.pixabay.com/photo/2021/12/30/01/48/dog-6903071_1280.jpg'   },
-    {
-        petId='2'
-        petName='험식이'
-        petBirth='2020.09.08'
-        profileImageUrl='https://cdn.pixabay.com/photo/2019/10/28/04/21/puppy-4583450_1280.jpg'
-    },
-    {
-        petId: "4",
-        petName: "Lucy",
-        petBirth: "2020-02-18",
-        profileImageUrl: "https://cdn.pixabay.com/photo/2019/08/26/06/26/the-black-dog-4430887_1280.jpg" // 기본 이미지가 여기에 들어갈 수 있습니다.
-    },
-    {
-        petId: "5",
-        petName: "Charlie",
-        petBirth: "2016-07-12",
-        profileImageUrl: "https://example.com/images/charlie.jpg"
-    }
-];
+const petList = petListTestData
 
 export function PetList() {
     return (
         <ScrollView style={styles.scroll}>
             <View style={styles.list}>
-                <Item
-
-                />
-                <Item
-
-                    />
-                <Item
-
-                    />
-                <Item
-                
-                />
-
-                <Item
-                    petId='3'
-                    petName='광추'
-                    petBirth='2011.05.05'
-                    profileImageUrl='https://cdn.pixabay.com/photo/2017/08/18/16/13/dog-2655466_1280.jpg'
-                />
+            {
+                petList.map((item)=>{
+                    return(
+                        <Item
+                            petId={item.petId}
+                            petName={item.name}
+                            petBirth={item.birthdate}
+                            profileImageUrl={item.profilePictureURL}
+                        />
+                    )
+                })
+            }
 
             </View>
         </ScrollView>
@@ -118,7 +86,8 @@ function Item(prop : PetListItemProp) {
                         height : 100,
                         borderRadius : 50
                     }}
-                    source={{uri: prop.profileImageUrl}}
+                    source= {defaultProfilePicture}
+
                 />
             </View>
             <View style={styles.information}>

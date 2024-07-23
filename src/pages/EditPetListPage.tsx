@@ -53,13 +53,7 @@ const styles = StyleSheet.create({
     
 
 })
-/*interface PetListItemProp
-{
-    petID : string;
-    petName : string;
-    petBirthdate : string;
-    petProfileUrl : string;
-}*/
+
 
 function EditPetList()
 {

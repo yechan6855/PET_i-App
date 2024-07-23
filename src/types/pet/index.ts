@@ -10,7 +10,6 @@ export interface Pet
     userId : string;
     name : string;
     birthdate : string;
-    gender : PetGender;
     profilePictureURL : string;
 }
 
@@ -19,4 +18,5 @@ export interface PetDetail extends Pet
     breed : string;
     createdAt : string;
     updatedAt : string;
+    gender : PetGender;
 }
