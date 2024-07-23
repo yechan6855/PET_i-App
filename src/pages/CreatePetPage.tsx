@@ -146,9 +146,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#3fea2d',
 
     },
-    
-    
-
     createBtn : {
         width : '100%',
         height : '10%',
@@ -157,16 +154,19 @@ const styles = StyleSheet.create({
 
     birth : {
         flexDirection : "row",
-        // backgroundColor : "red",
-        alignItems : 'center',
         justifyContent : "center"
     },
     birthChild : {
-        backgroundColor : "red",        
+        borderColor : "black",
+        // borderWidth : 1,
     },
-    birthChildText : {
-        fontSize : 24
-    }
+    birthChildInput : {
+        padding : 0,
+        fontSize : 36,
+        fontWeight : '900',
+        textAlign : "left",
+        paddingHorizontal : 14
+    },
 
 
 });
@@ -212,7 +212,6 @@ function CreatePet()
                         <View style ={styles.genderBtnSection}>
                             <TouchableOpacity style = {styles.genderBtn}/>
                             <TouchableOpacity style = {styles.genderBtn}/>
-
                         </View>
 
                     </View>
@@ -221,8 +220,22 @@ function CreatePet()
                 <Section
                     title='생년월일'
                 >
-                    <View>
-                        <Text>YYYY:MM:DD</Text>
+                    <View style={styles.birth}>
+                        <View style={styles.birthChild}>
+                            <TextInput style={styles.birthChildInput} defaultValue='YYYY' maxLength={4} keyboardType='numeric'/>
+                        </View>
+                        <View style={styles.birthChild}>
+                            <Text style={styles.birthChildInput}>:</Text>
+                        </View>
+                        <View style={styles.birthChild}>
+                            <TextInput style={styles.birthChildInput} defaultValue='MM' maxLength={2} keyboardType='numeric'/>
+                        </View>
+                        <View style={styles.birthChild}>
+                            <Text style={styles.birthChildInput}>:</Text>
+                        </View>
+                        <View style={styles.birthChild}>
+                            <TextInput style={styles.birthChildInput} defaultValue='DD' maxLength={2} keyboardType='numeric'/>
+                        </View>
                     </View>
                 </Section>
                 <Section
