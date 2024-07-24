@@ -1,6 +1,12 @@
 import { Image, StyleSheet, Text, TextInput, View } from "react-native";
 import testProfileImage from '../../../assets/images/test-dogprofileimg.png';
 import Color from "../../Constants/Color";
+
+import maleIcon from '../../../assets/images/man.png'
+import femaleIcon from '../../../assets/images/female.png'
+
+
+
 const style = StyleSheet.create({
     birth : {
         flexDirection : "row",
@@ -81,10 +87,10 @@ export function PetProfileForm() {
             </View>
             <View style={profile.gender}>
                 <View style={profile.genderIcon}>
-                    <Image style={profile.genderIconImage} source={testProfileImage}/>
+                    <Image style={profile.genderIconImage} source={maleIcon}/>
                 </View>
                 <View style={profile.genderIcon}>
-                    <Image style={profile.genderIconImage} source={testProfileImage}/>
+                    <Image style={profile.genderIconImage} source={femaleIcon}/>
                 </View>
             </View>
         </View>
