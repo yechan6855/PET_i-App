@@ -1,9 +1,7 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import { Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, ImageBackground } from 'react-native';
-
 import textLogoWhite from '../../assets/images/peti-text-icon-w.png';
-
-const backgroundImage = require('../../assets/images/background.jpg');
+import backgroundImage from '../../assets/images/background.jpg';
 
 const styles = StyleSheet.create({
 
@@ -109,7 +107,62 @@ const styles = StyleSheet.create({
 
 });
 
-function LoginPageEdit() {
+function LoginPage() {
+    
+    const loginRequest = useCallback( async (email : string, password : string) => {        
+        
+        try {
+            const response = await fetch(`http://10.0.2.2:5500/auth/login`, {
+                method : "POST",
+                headers : {
+                    "Content-Type" : "application/json"
+                },
+                body: JSON.stringify({ email, password })
+            })
+            const result = await response.json()
+            if (!response.ok) {
+                throw new Error(result.message)
+            }
+            console.log(response.headers)            
+        } catch (error) {
+            if (error instanceof Error) {
+                console.log(error.message)
+                return
+            }
+            console.log(error)            
+        }
+        
+    }, [])
+    const testRequest = useCallback( async () => {        
+        
+        try {
+            const response = await fetch(`http://10.0.2.2:5500/auth/test`, {
+                method : "POST",
+                headers : {
+                    "Content-Type" : "application/json"
+                },
+            })
+            const result = await response.json()
+            if (!response.ok) {
+                throw new Error(result.message)
+            }  
+            console.log(result)
+        } catch (error) {
+            if (error instanceof Error) {
+                console.log(error.message)
+                return
+            }
+            console.log(error)            
+        }
+        
+    }, [])
+    const [inputEmail, setInputEmail] = useState<string>()
+    const [inputPassword, setInputPassword] = useState<string>()
+    const loginAction = useCallback(async () => {
+        if (!inputEmail) return
+        if (!inputPassword) return
+        await loginRequest(inputEmail, inputPassword)
+    }, [inputEmail, inputPassword])
     return (
         <ImageBackground source={backgroundImage} style={styles.BackgroundImage} resizeMode="cover">
         <View style={styles.Container}>
@@ -122,28 +175,38 @@ function LoginPageEdit() {
             <View style={styles.TextInputContainer}>
                 <View style ={styles.TextInputItem}>
                     <Text style ={styles.TextInputLabel}>ID</Text>
-                        <TextInput
+                    <TextInput
                         style = {styles.input}
                         placeholder="ID를 입력해주세요"
                         placeholderTextColor='white'
-                        />
-                    </View>
+                        value={inputEmail}
+                        onChangeText={setInputEmail}
+                    />
+                </View>
                 <View style ={styles.TextInputItem}>
                     <Text style ={styles.TextInputLabel}>PW</Text>
                     <TextInput
                         style = {styles.input}
                         placeholder="비밀번호를 입력해주세요"
                         placeholderTextColor='white'
-                        />
+                        value={inputPassword}
+                        onChangeText={setInputPassword}
+                    />
                 </View>
                 
             </View>
 
             <View style = {styles.LoginBtnContainer}>
-                <TouchableOpacity style = {styles.LoginBtn}>
+                <TouchableOpacity
+                    style={styles.LoginBtn}
+                    onPress={loginAction}
+                >
                     <Text style = {styles.LoginBtnText}>로그인</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style = {styles.SigninBtn}>
+                <TouchableOpacity
+                    style={styles.SigninBtn}
+                    onPress={testRequest}
+                >
                     <Text style = {styles.SigninBtnText}>회원가입</Text>
                 </TouchableOpacity>
             </View>
@@ -160,4 +223,4 @@ function LoginPageEdit() {
     );
 }
 
-export default LoginPageEdit;
+export default LoginPage;

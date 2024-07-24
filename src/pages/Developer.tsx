@@ -30,7 +30,7 @@ function Developer({navigation}: {navigation: NavigationProp<ParamListBase>}) {
             
             <Button
             title = "Login"
-            onPress={()=> navigation.navigate('LogInPageEdit')}
+            onPress={()=> navigation.navigate('Login')}
             />
 
             <Button
@@ -56,9 +56,9 @@ function Developer({navigation}: {navigation: NavigationProp<ParamListBase>}) {
             onPress={()=> navigation.navigate('Signin')}/>
 
             {
-                menu.map((item)=>{
+                menu.map((item, index)=>{
                     return (
-                        <Item name={item.name} price={item.price}/>
+                        <Item key={index} name={item.name} price={item.price}/>
                     )
                 })
             }

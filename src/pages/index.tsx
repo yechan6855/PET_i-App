@@ -7,7 +7,7 @@ import Color from "../Constants/Color";
 import { Pressable, Text, View, Image, StyleSheet, TouchableOpacity } from "react-native";
 import LogoImage from "../../assets/images/peti_logo.png"
 import UserMenuList from "./UserMenu";
-import LoginPageEdit from "./LogInPageEdit";
+import LoginPage from "./LogInPage";
 import PetList from "./PetListPage";
 import CreatePet from "./CreatePetPage";
 import EditPetList from "./EditPetListPage";
@@ -18,7 +18,7 @@ export type RootStackParamList = {
     Developer: undefined;
     Pet: undefined;
     UserMenu : undefined;
-    LogInPageEdit : undefined;
+    Login : undefined;
     PetList : undefined;
     CreatePet : undefined;
     EditPetList : undefined;
@@ -44,8 +44,11 @@ const data : ReadonlyArray<PageConfig> = Object.freeze([
     },
 
     {
-        endPoint : "LogInPageEdit",
-        component : LoginPageEdit
+        endPoint : "Login",
+        component : LoginPage,
+        option : {
+            headerShown : false
+        }
     },
     {
         endPoint : "Pet",
