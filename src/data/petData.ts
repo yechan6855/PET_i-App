@@ -7,7 +7,7 @@ export const petTestData : ReadonlyArray<PetDetail> = Object.freeze([
       "name": "Bella",
       "birthdate": "2020-03-01",
       "gender": 1,
-      "profilePictureURL": "https://example.com/profiles/bella.jpg",
+      "profilePictureURL": null,
       "breed": "Labrador Retriever",
       "createdAt": "2020-03-02",
       "updatedAt": "2023-07-01"

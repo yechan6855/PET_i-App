@@ -20,3 +20,9 @@ export interface PetDetail extends Pet
     updatedAt : string;
     gender : PetGender;
 }
+
+export interface vitalData
+{
+    bpm : number,
+    temperature : number
+}
