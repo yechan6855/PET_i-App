@@ -1,9 +1,12 @@
-import { Text, View, StyleSheet, Image } from "react-native"
+import { Text, View, StyleSheet, Image, TouchableOpacity } from "react-native"
 import { PetList } from "../components/PetList"
 
 import editIconImage from '../../assets/images/edit-icon.png'
 import style from "../Constants/Style"
 import usePet from "../hooks/usePet"
+import { useNavigation } from "@react-navigation/native"
+import { NativeStackNavigationProp } from "@react-navigation/native-stack"
+import { RootStackParamList } from "."
 const styles = StyleSheet.create({
     container : {
         //backgroundColor : "red",
@@ -31,14 +34,14 @@ const styles = StyleSheet.create({
 })
 export default function PetListPage() {
     const  { list, size } = usePet()
-    
+    const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>()
     return (
         <View style={styles.container}>
             <View style={styles.top}>
                 <View>
                     <Text style={styles.topGuideText}>정예림 님의 아이들</Text>
                 </View>
-                <View>
+                <TouchableOpacity onPress={() => {navigation.navigate("CreatePet")}}>
                     <Image
                         source={editIconImage}
                         style={{
@@ -46,7 +49,7 @@ export default function PetListPage() {
                             height : 30
                         }}
                     />
-                </View>
+                </TouchableOpacity>
             </View>
             <View style={styles.section}>
                 <PetList item={list}/>
