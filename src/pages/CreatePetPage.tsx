@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from 'react';
+import React, { useCallback, useEffect, useReducer } from 'react';
 import { Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, ImageBackground, Button } from 'react-native';
 
 import testProfileImage from '../../assets/images/test-dogprofileimg.png';
@@ -226,9 +226,39 @@ function CreatePet()
         birth : undefined
     })
 
-    useEffect(() => {
-        console.log(petForm)
+    const createAction = useCallback( async () => {
+        const {name, gender, breed, birth} = petForm
+        if (!birth) {
+            console.log("생년월일 null")
+            return
+        }
+        if (!name) {
+            console.log("이름 null")
+            return
+        }
+        if (!breed) {
+            console.log("품종 null")
+            return
+        }
+        if (gender === undefined) {
+            console.log("성별 null")
+            return
+        }        
+        await createRequest(name, gender, breed, birth)
     }, [petForm])
+    const createRequest = useCallback (async (
+        name : string,
+        gender : number,
+        breed : string,
+        birth : String,
+    ) => {
+        const formData = new FormData()
+        formData.append("name", name)
+        formData.append("gender", gender)
+        formData.append("breed", breed)
+        formData.append("birth", birth)
+        console.log(formData)
+    }, [])
     return(
         <View style = {styles.container}>
             <View style = {styles.innerContainer}>
@@ -287,7 +317,7 @@ function CreatePet()
                         ]}
                         />
                 </Section>
-                <TouchableOpacity style={styles.createBtn}>
+                <TouchableOpacity style={styles.createBtn} onPress={createAction}>
                     <Text style={{
                         fontSize : 18,
                         color : "#ffffff",
