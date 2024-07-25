@@ -16,7 +16,8 @@ export default function usePet() {
             console.log(error)
         })
     }, [])
-    return [
-        list
-    ]
+    return {
+        list,
+        size : list.length
+    }
 }

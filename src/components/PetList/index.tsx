@@ -3,6 +3,7 @@ export {}
 import ProfileImage from '../../../assets/images/test-dogprofileimg.png'
 import Color from '../../Constants/Color'
 import { Pet } from '../../types/pet'
+import { getDateString } from '../../Utils'
 
 const style = StyleSheet.create({    
     scroll : {        
@@ -63,7 +64,7 @@ function Item({pet} : {pet : Pet}) {
             </View>
             <View style={style.information}>
                 <Text style={style.informationText}>{pet.name}</Text>
-                <Text style={style.informationText}>{pet.birthdate.toString()}</Text>
+                <Text style={style.informationText}>{getDateString(new Date(pet.birthdate))}</Text>
             </View>
         </View>
     )    

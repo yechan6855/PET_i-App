@@ -30,7 +30,8 @@ const styles = StyleSheet.create({
     },
 })
 export default function PetListPage() {
-    const [list] = usePet()    
+    const  { list, size } = usePet()
+    
     return (
         <View style={styles.container}>
             <View style={styles.top}>
