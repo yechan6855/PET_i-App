@@ -2,6 +2,7 @@ import { View, Text, StyleSheet, ScrollView, Image } from 'react-native'
 export {}
 import ProfileImage from '../../../assets/images/test-dogprofileimg.png'
 import Color from '../../Constants/Color'
+import { Pet } from '../../types/pet'
 
 const style = StyleSheet.create({    
     scroll : {        
@@ -30,23 +31,24 @@ const style = StyleSheet.create({
         fontWeight : "900"
     }
 })
-export function PetList() {
+interface PetListProp {
+    item : Pet[]
+}
+export function PetList({item} : PetListProp) {
     return (
         <ScrollView style={style.scroll}>
             <View style={style.list}>
-                <Item/>
-                <Item/>
-                <Item/>
-                <Item/>
-                <Item/>
-                <Item/>
-                <Item/>
+                {
+                    item.map((pet) => {
+                        return <Item key={pet.petId} pet={pet}/>
+                    })
+                }
             </View>
         </ScrollView>
     )
 }
 
-function Item() {
+function Item({pet} : {pet : Pet}) {
     return (
         <View style={style.item}>
             <View>
@@ -60,8 +62,8 @@ function Item() {
                 />
             </View>
             <View style={style.information}>
-                <Text style={style.informationText}>살구</Text>
-                <Text style={style.informationText}>20214.09.03</Text>
+                <Text style={style.informationText}>{pet.name}</Text>
+                <Text style={style.informationText}>{pet.birthdate.toString()}</Text>
             </View>
         </View>
     )    

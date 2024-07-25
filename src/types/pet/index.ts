@@ -6,17 +6,16 @@ export type PetGender = 0 | 1 | 2
 
 export interface Pet
 {
-    petId : string;
-    userId : string;
-    name : string;
-    birthdate : string;
+    petId : string;    
+    name : string;    
     gender : PetGender;
+    breed : string;
+    birthdate : Date;
     profilePictureURL : string;
 }
 
 export interface PetDetail extends Pet
-{
-    breed : string;
+{    
     createdAt : string;
     updatedAt : string;
 }

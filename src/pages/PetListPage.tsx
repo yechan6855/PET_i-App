@@ -3,6 +3,7 @@ import { PetList } from "../components/PetList"
 
 import editIconImage from '../../assets/images/edit-icon.png'
 import style from "../Constants/Style"
+import usePet from "../hooks/usePet"
 const styles = StyleSheet.create({
     container : {
         //backgroundColor : "red",
@@ -29,6 +30,7 @@ const styles = StyleSheet.create({
     },
 })
 export default function PetListPage() {
+    const [list] = usePet()    
     return (
         <View style={styles.container}>
             <View style={styles.top}>
@@ -46,7 +48,7 @@ export default function PetListPage() {
                 </View>
             </View>
             <View style={styles.section}>
-                <PetList/>
+                <PetList item={list}/>
             </View>
         </View>
     )
