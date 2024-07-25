@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useReducer } from 'react';
 import { Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, ImageBackground, Button } from 'react-native';
 
 import testProfileImage from '../../assets/images/test-dogprofileimg.png';
@@ -6,6 +6,7 @@ import { Section } from '../components';
 import RNPickerSelect from 'react-native-picker-select'
 import { BirthDay, PetProfileForm } from '../components/CreatePet';
 import Color from '../Constants/Color';
+import { Pet } from '../types/pet';
 
 
 const styles = StyleSheet.create({
@@ -177,9 +178,57 @@ const styles = StyleSheet.create({
 
 */
 
-
+interface PetForm 
+{
+    name : string | undefined;
+    gender : number | undefined;
+    breed : string | undefined;
+    birth : string | undefined;
+}
+type PetFormAction = 
+{ key : "NAME", name : string } |
+{ key : "BIRTH", birth : string } |
+{ key : "BREED", breed : string } |
+{ key : "GENDER", gender : number }
 function CreatePet()
 {
+    function petReducer(state : PetForm, action : PetFormAction) : PetForm {
+        switch (action.key) {
+            case "NAME" :
+                return {
+                    ...state,
+                    name : action.name
+                }
+            case 'BIRTH':
+                return {
+                    ...state,
+                    birth : action.birth
+                }
+            case 'BREED':
+                return {
+                    ...state,
+                    breed : action.breed
+                }
+            case 'GENDER': 
+                return {
+                    ...state,
+                    gender : action.gender
+                }
+            default :
+                return state
+        }
+        
+    }
+    const [petForm, dispatch] = useReducer(petReducer, {
+        name : undefined,
+        gender : undefined,
+        breed : undefined,
+        birth : undefined
+    })
+
+    useEffect(() => {
+        console.log(petForm)
+    }, [petForm])
     return(
         <View style = {styles.container}>
             <View style = {styles.innerContainer}>
@@ -208,7 +257,10 @@ function CreatePet()
                             }}>프로필 업로드</Text>
                         </TouchableOpacity>
                     </View>
-                    <PetProfileForm/>
+                    <PetProfileForm
+                        onNameChange={(name : string) => {dispatch({key:'NAME', name})}}
+                        onGenderChange={(gender) => {dispatch({key : "GENDER", gender})}}
+                    />
                 </View>
                 <Section
                     title='생년월일'
@@ -216,7 +268,9 @@ function CreatePet()
                         // flex :1
                     }}
                 >
-                    <BirthDay/>
+                    <BirthDay
+                        onChangeDate={(birth) => { if (birth) dispatch({key:"BIRTH", birth}) }}
+                    />
                 </Section>
                 <Section
                     title='품종'
@@ -225,7 +279,7 @@ function CreatePet()
                     }}
                 >
                     <RNPickerSelect                        
-                        onValueChange={(value) => console.log(value)}
+                        onValueChange={(value) => dispatch({key:"BREED", breed : value})}
                         items={[
                             { label: '말티즈', value: '말티즈' },
                             { label: 'Baseball', value: 'baseball' },

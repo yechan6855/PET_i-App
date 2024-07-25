@@ -1,6 +1,7 @@
-import { Image, StyleSheet, Text, TextInput, View } from "react-native";
+import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import testProfileImage from '../../../assets/images/test-dogprofileimg.png';
 import Color from "../../Constants/Color";
+import { useEffect, useMemo, useState } from "react";
 const style = StyleSheet.create({
     birth : {
         flexDirection : "row",
@@ -19,23 +20,52 @@ const style = StyleSheet.create({
 })
 
 
-export function BirthDay() {
+export function BirthDay({onChangeDate} : {onChangeDate : (date : string | undefined) => void}) {
+    const [year, setYear] = useState<string|undefined>()
+    const [month, setMonth] = useState<string|undefined>()
+    const [day, setDay] = useState<string|undefined>()
+    useEffect(()=>{
+        if (!year || !month || !day) {
+            onChangeDate(undefined)
+        } else {
+            onChangeDate(`${year}-${month}-${day}`)
+        }
+        
+    }, [year, month, day])
     return (
         <View style={style.birth}>
             <View style={style.birthChild}>
-                <TextInput style={style.birthChildInput} placeholder='YYYY' maxLength={4} keyboardType='numeric'/>
+                <TextInput 
+                    style={style.birthChildInput} 
+                    placeholder='YYYY' 
+                    maxLength={4}
+                    keyboardType='numeric'
+                    onChangeText={setYear}
+                />
             </View>
             <View style={style.birthChild}>
                 <Text style={style.birthChildInput}>:</Text>
             </View>
             <View style={style.birthChild}>
-                <TextInput style={style.birthChildInput} placeholder='MM' maxLength={2} keyboardType='numeric'/>
+                <TextInput 
+                    style={style.birthChildInput}
+                    placeholder='MM'
+                    maxLength={2} 
+                    keyboardType='numeric'
+                    onChangeText={setMonth}
+                />
             </View>
             <View style={style.birthChild}>
                 <Text style={style.birthChildInput}>:</Text>
             </View>
             <View style={style.birthChild}>
-                <TextInput style={style.birthChildInput} placeholder='DD' maxLength={2} keyboardType='numeric'/>
+                <TextInput 
+                    style={style.birthChildInput} 
+                    placeholder='DD' 
+                    maxLength={2} 
+                    keyboardType='numeric'
+                    onChangeText={setDay}
+                />
             </View>
         </View>
     )
@@ -73,19 +103,27 @@ const profile = StyleSheet.create({
         borderRadius : 8
     }
 })
-export function PetProfileForm() {
+export function PetProfileForm({onNameChange, onGenderChange} : {
+    onNameChange : (name : string) => void;
+    onGenderChange : (value : number) => void;
+}) {
+    const [gender, setGender] = useState<number | undefined>()
+
+    useEffect(() => {
+        if (gender !== undefined) {onGenderChange(gender)}
+    }, [gender])
     return (
         <View style={profile.container}>
             <View style={profile.name}>
-                <TextInput style={profile.input} placeholder="이름을 입력하여주세요"/>
+                <TextInput style={profile.input} onChangeText={onNameChange} placeholder="이름을 입력하여주세요"/>
             </View>
             <View style={profile.gender}>
-                <View style={profile.genderIcon}>
+                <TouchableOpacity style={profile.genderIcon} onPress={()=>{setGender(0)}}>
                     <Image style={profile.genderIconImage} source={testProfileImage}/>
-                </View>
-                <View style={profile.genderIcon}>
+                </TouchableOpacity>
+                <TouchableOpacity style={profile.genderIcon} onPress={()=>{setGender(1)}}>
                     <Image style={profile.genderIconImage} source={testProfileImage}/>
-                </View>
+                </TouchableOpacity>
             </View>
         </View>
     )
