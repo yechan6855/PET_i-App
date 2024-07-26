@@ -7,6 +7,7 @@ import RNPickerSelect from 'react-native-picker-select'
 import { BirthDay, PetProfileForm } from '../components/CreatePet';
 import Color from '../Constants/Color';
 import { Pet } from '../types/pet';
+import { launchImageLibrary } from "react-native-image-picker"
 
 
 const styles = StyleSheet.create({
@@ -280,7 +281,13 @@ function CreatePet()
                                 source={testProfileImage}
                             />
                         </View>
-                        <TouchableOpacity style = {styles.profileImgUploadBtn}>
+                        <TouchableOpacity
+                            style={styles.profileImgUploadBtn}
+                            onPress={async () => {
+                                const result = await launchImageLibrary({mediaType : "photo"})
+                                console.log(result)
+                            }}
+                        >
                             <Text style={{
                                 fontWeight : '600',
                                 color : "#ffffff"
