@@ -2,6 +2,7 @@ import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "reac
 import testProfileImage from '../../../assets/images/test-dogprofileimg.png';
 import Color from "../../Constants/Color";
 import { useEffect, useMemo, useState } from "react";
+import { Asset, launchImageLibrary } from "react-native-image-picker";
 const style = StyleSheet.create({
     birth : {
         flexDirection : "row",
@@ -127,4 +128,86 @@ export function PetProfileForm({onNameChange, onGenderChange} : {
             </View>
         </View>
     )
+}
+
+const img = StyleSheet.create({
+    profileImgContainer : {
+        width : '45%',
+             
+        alignItems : "center",
+        // backgroundColor : "red",
+        justifyContent : "center"
+    },
+    profileImageSection :{
+        width : "100%",
+        height : "60%",        
+    },
+    profileImgUploadBtn : {        
+        backgroundColor : Color.ORANGE,
+        alignSelf : "stretch",
+        marginTop : 8,
+        justifyContent : "center",
+        alignItems : "center",
+        padding : 8,
+        borderRadius : 8           
+    },
+})
+export interface ImageFileProp
+{
+    fileName : string;
+    uri : string;
+    type : string;
+}
+export function PetImage({onFileChange} : {onFileChange : (file : ImageFileProp) => void}) {
+    const [image, setImage] = useState<Asset | undefined>()
+    useEffect(()=>{
+        if (!image) return
+        const { fileName, uri, type } = image
+        if (!fileName) {
+            console.error("File Name Error")
+            return 
+        }
+        if (!uri) {
+            console.error("File uri Error")
+            return 
+        }
+        if (!type) {
+            console.error("File type Error")
+            return 
+        }
+        onFileChange({
+            fileName,
+            uri,
+            type
+        })
+    }, [image])
+    return (
+        <View style = {img.profileImgContainer}>
+            <View style = {img.profileImageSection}>
+                <Image
+                    style={{
+                        width : "100%",
+                        height : "100%",
+                        borderRadius : 20
+                    }}
+                    source={image ? {uri : image.uri} : testProfileImage}
+                />
+            </View>
+            <TouchableOpacity
+                style={img.profileImgUploadBtn}
+                onPress={async () => {
+                    const result = await launchImageLibrary({mediaType : "photo"})
+                    const { assets } = result
+                    if (assets && assets.length > 0) {
+                        setImage(assets[0])
+                    }
+                }}
+            >
+                <Text style={{
+                    fontWeight : '600',
+                    color : "#ffffff"
+                }}>프로필 업로드</Text>
+            </TouchableOpacity>
+        </View>
+    )        
 }

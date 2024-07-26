@@ -4,7 +4,7 @@ import { Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View,
 import testProfileImage from '../../assets/images/test-dogprofileimg.png';
 import { Section } from '../components';
 import RNPickerSelect from 'react-native-picker-select'
-import { BirthDay, PetProfileForm } from '../components/CreatePet';
+import { BirthDay, ImageFileProp, PetImage, PetProfileForm } from '../components/CreatePet';
 import Color from '../Constants/Color';
 import { Pet } from '../types/pet';
 import { launchImageLibrary } from "react-native-image-picker"
@@ -46,28 +46,6 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems : "center",        
     },
-
-    profileImgContainer : {
-        width : '45%',
-             
-        alignItems : "center",
-        // backgroundColor : "red",
-        justifyContent : "center"
-    },
-    profileImageSection :{
-        width : "100%",
-        height : "60%",        
-    },
-    profileImgUploadBtn : {        
-        backgroundColor : Color.ORANGE,
-        alignSelf : "stretch",
-        marginTop : 8,
-        justifyContent : "center",
-        alignItems : "center",
-        padding : 8,
-        borderRadius : 8           
-    },
-
     nameGenderSection : {
         width : '50%',
         height : '80%',
@@ -164,10 +142,6 @@ const styles = StyleSheet.create({
         backgroundColor : Color.ORANGE,
         borderRadius : 20
     },
-
-    
-
-
 });
 
 /* 색상값 (화면 구성 포토샵 작업본 기준)
@@ -185,12 +159,14 @@ interface PetForm
     gender : number | undefined;
     breed : string | undefined;
     birth : string | undefined;
+    image : ImageFileProp | undefined;
 }
 type PetFormAction = 
 { key : "NAME", name : string } |
 { key : "BIRTH", birth : string } |
 { key : "BREED", breed : string } |
-{ key : "GENDER", gender : number }
+{ key : "GENDER", gender : number } |
+{ key : "IMAGE", image : ImageFileProp }
 function CreatePet()
 {
     function petReducer(state : PetForm, action : PetFormAction) : PetForm {
@@ -215,6 +191,11 @@ function CreatePet()
                     ...state,
                     gender : action.gender
                 }
+            case 'IMAGE':
+                return {
+                    ...state,
+                    image : action.image
+                }
             default :
                 return state
         }
@@ -224,11 +205,12 @@ function CreatePet()
         name : undefined,
         gender : undefined,
         breed : undefined,
-        birth : undefined
+        birth : undefined,
+        image : undefined
     })
 
     const createAction = useCallback( async () => {
-        const {name, gender, breed, birth} = petForm
+        const {name, gender, breed, birth, image} = petForm
         if (!birth) {
             console.log("생년월일 null")
             return
@@ -245,20 +227,35 @@ function CreatePet()
             console.log("성별 null")
             return
         }        
-        await createRequest(name, gender, breed, birth)
+        if (!image) {
+            console.log("이미지 null")
+            return
+        }
+        await createRequest(name, gender, breed, birth, image)
     }, [petForm])
     const createRequest = useCallback (async (
         name : string,
         gender : number,
         breed : string,
         birth : String,
+        image : ImageFileProp
     ) => {
         const formData = new FormData()
         formData.append("name", name)
         formData.append("gender", gender)
         formData.append("breed", breed)
         formData.append("birth", birth)
-        console.log(formData)
+        formData.append("image", {...image, name : image.fileName})
+        // console.log(formData)
+        const response = await fetch("http://10.0.2.2:5500/pet", {
+            method : "POST",
+            body : formData,
+            headers : {
+                "Content-Type" : "multipart/form-data"
+            }
+        })
+        const result = await response.json()
+        console.log(result)
     }, [])
     return(
         <View style = {styles.container}>
@@ -268,32 +265,10 @@ function CreatePet()
                     <Text style = { styles.guideText}>등록을 위해</Text>
                     <Text style = { styles.guideText}>아이의 정보를 입력해주세요!</Text>
                 </View>
-
                 <View style = {styles.profileContainer}>
-                    <View style = {styles.profileImgContainer}>
-                        <View style = {styles.profileImageSection}>
-                            <Image
-                                style={{
-                                    width : "100%",
-                                    height : "100%",
-                                    borderRadius : 20
-                                }}
-                                source={testProfileImage}
-                            />
-                        </View>
-                        <TouchableOpacity
-                            style={styles.profileImgUploadBtn}
-                            onPress={async () => {
-                                const result = await launchImageLibrary({mediaType : "photo"})
-                                console.log(result)
-                            }}
-                        >
-                            <Text style={{
-                                fontWeight : '600',
-                                color : "#ffffff"
-                            }}>프로필 업로드</Text>
-                        </TouchableOpacity>
-                    </View>
+                    <PetImage
+                        onFileChange={(file) => {dispatch({key:"IMAGE", image : file})}}
+                    />                    
                     <PetProfileForm
                         onNameChange={(name : string) => {dispatch({key:'NAME', name})}}
                         onGenderChange={(gender) => {dispatch({key : "GENDER", gender})}}
