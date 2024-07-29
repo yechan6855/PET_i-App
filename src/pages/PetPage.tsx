@@ -9,210 +9,149 @@ import alertIcon from '../../assets/images/alert-icon.png';
 import logoIconWhite from '../../assets/images/petiLogoW.png';
 import menuIcon from '../../assets/images/menuIcon.png';
 
+import { DeviceStatus,PetProfile, PetVital, VitalGraph } from '../components/Pet';
+import { petTestData } from '../data/petData';
+import Color from '../Constants/Color';
+//import { petVital } from '../components/Pet';
+
 
 const styles = StyleSheet.create({
 
     container :{
         height : '100%',
-        width : '100%'
-    },
-
-    sectionList: {
-        margin: 20,
-        height: '90%',
-        flexDirection : 'column',
-        backgroundColor : '#d2ea2d'
-    },
-
-    nameBatteryContainer:{
-        height : '5%',
         width : '100%',
-        flexDirection : 'row',
+        alignItems : 'center',
+        justifyContent : 'center',
         backgroundColor : 'white'
     },
 
-    petName :{
-        width : '80%'
+    innerContainer: {
+        height: '90%',
+        width : '90%',
+        flexDirection : 'column',
+        //backgroundColor : 'blue',
+        justifyContent : 'space-between'
     },
-
-    batteryState :{
-        width : '20%',
-        backgroundColor : 'black',
-    },
-    batteryImage :{
-        width : '100%',
-        height : '100%',
-        resizeMode: 'contain',
-    },
-
-    petMoveState :{
-        width : '100%',
+    bottom :{
         height : '10%',
-        backgroundColor : '#2de8ea'
+        width : '100%',
+        backgroundColor : Color.DEEP_ORANGE,
+        justifyContent : 'space-between',
+        alignItems : 'center',
+        flexDirection : 'row'
     },
-    petMovemetImage : {
-        width : '15%',
-        height : '100%',
-        resizeMode : 'contain'
+    bottomIcon :{
+        resizeMode : 'contain',
+        height : 50,
+        width : 60,
+        //margin : 5
     },
-
-    petInformContainer : {
+    nameSection :{
+        width :'100%',
+        height : '5%',
+    },
+    statusSection : {
         width : '100%',
         height : '30%',
-        alignItems : 'flex-end',
-        backgroundColor : '#ea5a2d'
+       // backgroundColor : 'yellow',
+        position: 'absolute',
+        top: 0,
     },
-
-    editProfileBtnContainer : {
-        width : '20%',
-        height : '20%',
-        backgroundColor : 'black'
+    statusIcon : {
+        width : 60,
+        height : 30,
+        position : 'absolute',
+        bottom : 0,
+        //backgroundColor : 'green'
     },
-    editProfileBtn :{
-        color : 'white',
-        textAlign : 'center'
-    },
-
-    petInformTextContaioner :{
+    profileSection :{
         width : '100%',
-        height : '60%',
+        height : '33%',
+        justifyContent : 'center',
         alignItems : 'center',
-        backgroundColor : 'white'
+        //backgroundColor : 'black'
     },
-
     vitalDataSection : {
         width : '100%',
-        height : '10%',
-        backgroundColor : '#2de8ea'
-    },
-    vitalDataContainer : {
-        width : '100%',
-        flexDirection : 'row',
-        justifyContent: 'center'
-    },
-    vitalDataIcon : {
-        width : '10%',
-        height : '100%',
-        resizeMode : 'contain'
+        height : '15%',
     },
     graphSection :{
         width : '100%',
-        height : '30%',
-        backgroundColor : '#ea5a2d'
-    },
-
-    footerContainer : {
-        width : '100%',
-        height : '10%',
-        backgroundColor : '#ea5a2d',
-        flexDirection : 'row',
-        position: 'absolute',
-        bottom: 0,
-        left: 0,
-        right: 0,
-        justifyContent: 'space-between'
-    },
-    footerIcon : {
-        width : '20%',
-        height : '100%'
-    },
-    footerIconImage : {
-        width : '100%',
-        height : '100%',
-        resizeMode : 'contain'
+        height : '40%'
     }
 
-    
 
 });
 
 function Pet() {
+    const petData = petTestData[0]
+
+    const vitalData = {
+        bpm: 180,
+        temperature: 39
+    };
+
     return(
     <View style = {styles.container}>    
         
-        <View style = {styles.sectionList}>
-
-            <View style = {styles.nameBatteryContainer}>
-                <Text style = { styles.petName}>오늘의 히로</Text>
-                <TouchableOpacity style = {styles.batteryState}>
-                    <Image 
-                        source={batteryState00}
-                        style = {styles.batteryImage}
-                    />
-                </TouchableOpacity>
-            </View>
-
-            
-            <View style = {styles.petMoveState}>
-                <Image
-                    style = {styles.petMovemetImage}
-                    source={movementstateRun}
+        <View style = {styles.innerContainer}>
+            <View style = {styles.nameSection}>
+                <DeviceStatus
+                    petName={petData.name}
+                    batteryStatus={"https://cdn.pixabay.com/photo/2014/03/25/15/25/battery-terminals-296802_1280.png"}
+                    petId={"00"}
                 />
             </View>
 
-
-            <View style = {styles.petInformContainer}>
-                <View style = {styles.editProfileBtnContainer}>
-                <Text style = {styles.editProfileBtn}>편집</Text>
+            <View style = {styles.profileSection}>
+                <View style = {styles.statusSection}>
+                    <Image
+                        style = {styles.statusIcon}
+                        source={movementstateRun}
+                    />
                 </View>
+                <PetProfile
+                    profilePictureUrl={petData.profilePictureURL}
+                    petId={petData.petId}
+                    petName={petData.name}
+                    gender={petData.gender}
+                    breed={petData.breed}
+                    birthdate={petData.birthdate}
+                />
 
-                <View style = {styles.petInformTextContaioner}>
-                    <Text>히로</Text>
-                    <Text>2018.07.06</Text>
-                    <Text>말티즈</Text>
-                </View>
             </View>
 
             <View style = {styles.vitalDataSection}>
-                <View style = {styles.vitalDataContainer}>
-                    <Image
-                        style = {styles.vitalDataIcon}
-                        source={heartbeatIcon}
-                    />
-                    <Text>180 bpm</Text>
-
-                    
-                    <Image
-                        style = {styles.vitalDataIcon}
-                        source={temperatureIcon}
-                    />
-                    <Text>37C</Text>
-                </View>
-
+                <PetVital
+                    bpm={vitalData.bpm}
+                    temperature={vitalData.temperature}
+                />
             </View>
-
-            <View style ={styles.graphSection}>
-                <Text>그래프 구역</Text>
+            
+            <View style = {styles.graphSection}>
+                <VitalGraph
+                    bpm={180}
+                    temperature={39}
+                />
             </View>
 
         </View>
 
-    <View  style = {styles.footerContainer}>
-        <TouchableOpacity style = {styles.footerIcon}>
+        <View style = {styles.bottom}>
             <Image
-            source={alertIcon}
-            style = {styles.footerIconImage}
+                source={alertIcon}
+                style = {styles.bottomIcon}
             />
-        </TouchableOpacity>
-
-        <TouchableOpacity style = {styles.footerIcon}>
             <Image
-            source={logoIconWhite}
-            style = {styles.footerIconImage}
+                source={logoIconWhite}
+                style = {styles.bottomIcon}
             />
-        </TouchableOpacity>
-
-        <TouchableOpacity style = {styles.footerIcon}>
             <Image
-            source={menuIcon}
-            style = {styles.footerIconImage}
+                source={menuIcon}
+                style ={styles.bottomIcon}
             />
-        </TouchableOpacity>
-    
-    </View>    
 
-        
-
+        </View>
     </View>  
 
     );

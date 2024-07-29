@@ -3,6 +3,8 @@ import testProfileImage from '../../../assets/images/test-dogprofileimg.png';
 import Color from "../../Constants/Color";
 import { useEffect, useMemo, useState } from "react";
 import { Asset, launchImageLibrary } from "react-native-image-picker";
+import maleIcon from '../../../assets/images/man.png'
+import femaleIcon from '../../../assets/images/female.png'
 const style = StyleSheet.create({
     birth : {
         flexDirection : "row",
@@ -120,10 +122,10 @@ export function PetProfileForm({onNameChange, onGenderChange} : {
             </View>
             <View style={profile.gender}>
                 <TouchableOpacity style={profile.genderIcon} onPress={()=>{setGender(0)}}>
-                    <Image style={profile.genderIconImage} source={testProfileImage}/>
+                    <Image style={profile.genderIconImage} source={maleIcon}/>
                 </TouchableOpacity>
                 <TouchableOpacity style={profile.genderIcon} onPress={()=>{setGender(1)}}>
-                    <Image style={profile.genderIconImage} source={testProfileImage}/>
+                    <Image style={profile.genderIconImage} source={femaleIcon}/>
                 </TouchableOpacity>
             </View>
         </View>
