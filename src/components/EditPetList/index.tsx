@@ -48,14 +48,14 @@ const styles = StyleSheet.create({
     },
 })
 
-const petList = petListTestData
+
 
 export function PetList() {
     return (
         <ScrollView style={styles.scroll}>
             <View style={styles.list}>
             {
-                petList.map((item, petId)=>{
+                petListTestData.map((item, petId)=>{
                     return(
                         <Item key={petId}
                             petId={item.petId}
