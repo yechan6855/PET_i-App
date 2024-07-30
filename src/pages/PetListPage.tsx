@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     },
 })
 export default function PetListPage() {
-    const  { list } = usePet()
+    const  { list } = usePet()    
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>()
     return (
         <View style={styles.container}>

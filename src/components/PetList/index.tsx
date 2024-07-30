@@ -64,7 +64,7 @@ function Item({pet} : {pet : Pet}) {
             </View>
             <View style={style.information}>
                 <Text style={style.informationText}>{pet.name}</Text>
-                <Text style={style.informationText}>{getDateString(new Date(pet.birthdate))}</Text>
+                <Text style={style.informationText}>{getDateString(new Date(pet.birth))}</Text>
             </View>
         </View>
     )    

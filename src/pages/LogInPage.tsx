@@ -2,6 +2,10 @@ import React, { useCallback, useState } from 'react';
 import { Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, ImageBackground } from 'react-native';
 import textLogoWhite from '../../assets/images/peti-text-icon-w.png';
 import backgroundImage from '../../assets/images/background.jpg';
+import { useUserContext } from '../hooks/useUserContext';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '.';
 
 const styles = StyleSheet.create({
 
@@ -57,6 +61,9 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         borderBottomColor: 'white',
         //backgroundColor : '#d2ea2d'
+        color : "#fff",
+        fontWeight : '600',
+        fontSize : 22
     },
 
 
@@ -108,7 +115,8 @@ const styles = StyleSheet.create({
 });
 
 function LoginPage() {
-    
+    const { alert } = useUserContext()
+    const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>()
     const loginRequest = useCallback( async (email : string, password : string) => {        
         
         try {
@@ -123,46 +131,38 @@ function LoginPage() {
             if (!response.ok) {
                 throw new Error(result.message)
             }
-            console.log(response.headers)            
-        } catch (error) {
-            if (error instanceof Error) {
-                console.log(error.message)
-                return
-            }
-            console.log(error)            
-        }
-        
-    }, [])
-    const testRequest = useCallback( async () => {        
-        
-        try {
-            const response = await fetch(`http://10.0.2.2:5500/auth/test`, {
-                method : "POST",
-                headers : {
-                    "Content-Type" : "application/json"
-                },
+            alert("로그인 성공", `${result.user.username}님 반갑습니다.`, () => {
+                navigation.navigate("PetList")
             })
-            const result = await response.json()
-            if (!response.ok) {
-                throw new Error(result.message)
-            }  
-            console.log(result)
         } catch (error) {
             if (error instanceof Error) {
+                alert("로그인 실패", error.message)
                 console.log(error.message)
                 return
             }
-            console.log(error)            
+            alert("Error", "Error...")
+            console.error(error)
         }
         
     }, [])
+    
     const [inputEmail, setInputEmail] = useState<string>()
     const [inputPassword, setInputPassword] = useState<string>()
     const loginAction = useCallback(async () => {
-        if (!inputEmail) return
-        if (!inputPassword) return
+        if (!inputEmail) {
+            alert("경고", "이메일을 입력 하여 주세요")
+            return
+        }
+        if (!inputPassword) {
+            alert("경고", "비밀번호를 입력 하여 주세요")
+            return
+        }
         await loginRequest(inputEmail, inputPassword)
     }, [inputEmail, inputPassword])
+
+    const signUpHandle = useCallback(() => {
+        console.log("회원가입 페이지 이동")
+    }, [])
     return (
         <ImageBackground source={backgroundImage} style={styles.BackgroundImage} resizeMode="cover">
         <View style={styles.Container}>
@@ -190,6 +190,7 @@ function LoginPage() {
                         placeholder="비밀번호를 입력해주세요"
                         placeholderTextColor='white'
                         value={inputPassword}
+                        secureTextEntry={true}
                         onChangeText={setInputPassword}
                     />
                 </View>
@@ -205,7 +206,7 @@ function LoginPage() {
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.SigninBtn}
-                    onPress={testRequest}
+                    onPress={signUpHandle}
                 >
                     <Text style = {styles.SigninBtnText}>회원가입</Text>
                 </TouchableOpacity>

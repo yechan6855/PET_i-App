@@ -1,25 +1,10 @@
 import { NavigationProp, ParamListBase } from '@react-navigation/native';
 import React from 'react';
-import {Button, Text, View} from 'react-native';
+import {Alert, Button, Text, View} from 'react-native';
+import { useUserContext } from '../hooks/useUserContext';
 
-
-const menu = [
-    {
-        name : "콜라",
-        price : 1500
-    },
-    {
-        name : "커피",
-        price : 1800
-    },
-    {
-        name : "환타",
-        price : 1700
-    },
-
-]
 function Developer({navigation}: {navigation: NavigationProp<ParamListBase>}) {
-    
+    const usercontext = useUserContext()    
     return (
         <View>
 
@@ -54,32 +39,14 @@ function Developer({navigation}: {navigation: NavigationProp<ParamListBase>}) {
             <Button
             title="Signin"
             onPress={()=> navigation.navigate('Signin')}/>
-
-            {
-                menu.map((item, index)=>{
-                    return (
-                        <Item key={index} name={item.name} price={item.price}/>
-                    )
-                })
-            }
             
-            
+            <Button
+                title='Alert !'
+                onPress={() => {usercontext.alert("끼예엑!", "응우옌으억루")}}
+            />
         </View>
     );
-
-    function Item(prop : MenuProp) {
-        return (
-            <View>
-                <Text>{prop.name}</Text>
-                <Text>{prop.price}</Text>
-            </View>
-        )
-    }
     
-}
-interface MenuProp {
-    name : string
-    price : number
 }
 
 export default Developer;
