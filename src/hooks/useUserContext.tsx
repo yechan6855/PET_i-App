@@ -2,13 +2,18 @@ import React, { createContext, useCallback, useContext } from "react";
 import { Alert } from "react-native";
 interface UserContextProp
 {
-    alert : (title :string, message : string) => void
+    alert : (title :string, message : string, okCallback? : () => void) => void
 }
 const UserContext = createContext<UserContextProp | undefined>(undefined)
 
 export function UserProvider({children} : {children : React.ReactNode}) {
-    const alert = useCallback((title : string, message : string) => {
-        Alert.alert(title, message)
+    const alert = useCallback((title : string, message : string, okCallback? : () => void) => {
+        Alert.alert(title, message, [
+            {
+                text : "OK",
+                onPress : okCallback
+            }
+        ])
     }, [])
     return (
         <UserContext.Provider value={{
