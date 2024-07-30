@@ -2,7 +2,7 @@ import { Text, View, StyleSheet, Image, TouchableOpacity } from "react-native"
 import { PetList } from "../components/PetList"
 
 import editIconImage from '../../assets/images/edit-icon.png'
-import style from "../Constants/Style"
+import style from '../Constants/Style';
 import usePet from "../hooks/usePet"
 import { useNavigation } from "@react-navigation/native"
 import { NativeStackNavigationProp } from "@react-navigation/native-stack"

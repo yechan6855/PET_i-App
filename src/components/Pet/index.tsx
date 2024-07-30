@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     statusSection :{
         width : '100%',
         height : '30%',
-        //backgroundColor : 'yellow',
+        backgroundColor : 'yellow',
     },
 
     profileSection : { 
