@@ -10,7 +10,7 @@ export interface Pet
     name : string;    
     gender : PetGender;
     breed : string;
-    birthdate : string;
+    birth : string;
     profilePictureURL : string;
 }
 
