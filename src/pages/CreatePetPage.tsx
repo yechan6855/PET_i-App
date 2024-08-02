@@ -8,6 +8,8 @@ import { BirthDay, ImageFileProp, PetImage, PetProfileForm } from '../components
 import Color from '../Constants/Color';
 import { Pet } from '../types/pet';
 import { launchImageLibrary } from "react-native-image-picker"
+import { breedList } from '../data/petBreedData';
+
 
 
 const styles = StyleSheet.create({
@@ -292,11 +294,11 @@ function CreatePet()
                 >
                     <RNPickerSelect                        
                         onValueChange={(value) => dispatch({key:"BREED", breed : value})}
-                        items={[
-                            { label: '말티즈', value: '말티즈' },
-                            { label: 'Baseball', value: 'baseball' },
-                            { label: 'Hockey', value: 'hockey' },
-                        ]}
+                        items={breedList.map((item) => ({
+                            label : item,
+                            value : item,
+                        }))}
+                       
                         />
                 </Section>
                 <TouchableOpacity style={styles.createBtn} onPress={createAction}>
