@@ -161,7 +161,8 @@ function LoginPage() {
     }, [inputEmail, inputPassword])
 
     const signUpHandle = useCallback(() => {
-        console.log("회원가입 페이지 이동")
+        // console.log("회원가입 페이지 이동")
+        navigation.navigate("Signin")
     }, [])
     return (
         <ImageBackground source={backgroundImage} style={styles.BackgroundImage} resizeMode="cover">
