@@ -3,7 +3,7 @@ export {}
 import ProfileImage from '../../../assets/images/test-dogprofileimg.png'
 import Color from '../../constants/Color'
 import { Pet } from '../../types/pet'
-import { getDateString } from '../../Utils'
+import { getDateString } from '../../utils'
 
 const style = StyleSheet.create({    
     scroll : {        

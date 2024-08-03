@@ -6,6 +6,7 @@ import { useUserContext } from '../hooks/useUserContext';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '.';
+import { getServerURL } from '../constants/Config';
 
 const styles = StyleSheet.create({
 
@@ -120,7 +121,7 @@ function LoginPage() {
     const loginRequest = useCallback( async (email : string, password : string) => {        
         
         try {
-            const response = await fetch(`http://10.0.2.2:5500/auth/login`, {
+            const response = await fetch(`${getServerURL()}/auth/login`, {
                 method : "POST",
                 headers : {
                     "Content-Type" : "application/json"
@@ -131,7 +132,7 @@ function LoginPage() {
             if (!response.ok) {
                 throw new Error(result.message)
             }
-            alert("로그인 성공", `${result.user.username}님 반갑습니다.`, () => {
+                alert("로그인 성공", `${result.user.username}님 반갑습니다.`, () => {
                 navigation.navigate("PetList")
             })
         } catch (error) {

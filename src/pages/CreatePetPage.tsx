@@ -9,6 +9,7 @@ import Color from '../constants/Color';
 import { Pet } from '../types/pet';
 import { launchImageLibrary } from "react-native-image-picker"
 import { breedList } from '../data/petBreedData';
+import { getServerURL } from '../constants/Config';
 
 
 
@@ -249,7 +250,7 @@ function CreatePet()
         formData.append("birth", birth)
         formData.append("image", {...image, name : image.fileName})
         // console.log(formData)
-        const response = await fetch("http://10.0.2.2:5500/pet", {
+        const response = await fetch(`${getServerURL()}/pet`, {
             method : "POST",
             body : formData,
             headers : {

@@ -5,6 +5,7 @@ import { useUserContext } from '../hooks/useUserContext';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '.';
+import { getServerURL } from '../constants/Config';
 
 const styles = StyleSheet.create({
 
@@ -124,7 +125,7 @@ function Signin() {
         password : string
     ) => {
         try {
-            const response = await fetch("http://10.0.2.2:5500/auth/register", {
+            const response = await fetch(`${getServerURL()}/auth/register`, {
                 method : "POST",
                 headers : {
                     "Content-Type" : "application/json"
