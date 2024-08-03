@@ -6,6 +6,7 @@ import peteyeImage from '../../assets/images/peteye-btn.png';
 import scheduleImage from '../../assets/images/calendar-icon.png';
 import piechartImage from '../../assets/images/piechart-icon.png';
 import settingImage from '../../assets/images/settings-icon.png'
+import { useUserContext } from '../hooks/useUserContext';
 
 const styles = StyleSheet.create({
     container: {
@@ -69,11 +70,10 @@ const styles = StyleSheet.create({
     },
 });
 
-interface UserInform {
-    userName: string;
-}
 
-function UserMenuList({ userName }: UserInform) {
+function UserMenuList() {
+    const { user } = useUserContext()
+    console.log(user)
     return (
         <ScrollView style={styles.container}>
 

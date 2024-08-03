@@ -13,6 +13,7 @@ import CreatePet from "./CreatePetPage";
 import EditPetList from "./EditPetListPage";
 import Signin from "./SigninPage";
 import backButtonImage from '../../assets/images/backbtn.png';
+import { Authorization } from "../components/Authorization";
 
 export type RootStackParamList = {
     Developer: undefined;
@@ -29,6 +30,7 @@ interface PageConfig
     endPoint : keyof RootStackParamList;
     component : React.ComponentType<any>;
     option? : NativeStackNavigationOptions;
+    isAuth : boolean;
 }
 
 /// 모든 페이지 라우터의 상수 (모든 페이지의 신)
@@ -36,11 +38,13 @@ const data : ReadonlyArray<PageConfig> = Object.freeze([
     {
         endPoint : "Developer",
         component : Developer,
-        option : {}
+        option : {},
+        isAuth : false
     },
     {
         endPoint : "UserMenu" ,
-        component : UserMenuList
+        component : UserMenuList,
+        isAuth : true
     },
 
     {
@@ -48,30 +52,36 @@ const data : ReadonlyArray<PageConfig> = Object.freeze([
         component : LoginPage,
         option : {
             headerShown : false
-        }
+        },
+        isAuth : false
     },
     {
         endPoint : "Pet",
-        component : Pet
+        component : Pet,
+        isAuth : false
     },
     {
         endPoint : "PetList",
         component : PetList,
         option : {
             headerShown : false
-        }
+        },
+        isAuth : true
     },
     {
         endPoint : "CreatePet",
-        component : CreatePet
+        component : CreatePet,
+        isAuth : false
     },
     {
         endPoint : "EditPetList",
-        component : EditPetList
+        component : EditPetList,
+        isAuth : false
     },
     {
         endPoint : "Signin",
-        component : Signin
+        component : Signin,
+        isAuth : false
     }
 ])
 const Stack = createNativeStackNavigator<RootStackParamList>()
@@ -81,12 +91,15 @@ export const Pages = () => {
         <NavigationContainer>
             <Stack.Navigator initialRouteName="Developer">
                 {
-                    data.map(({endPoint, component, option}, index) => {
+                    data.map(({endPoint, component, isAuth, option}, index) => {
+                        const ScreenComponent = isAuth ? (prop : any) => {
+                            return <Authorization>{React.createElement(component, prop)}</Authorization>
+                        } : component
                         return (
                             <Stack.Screen
                                 key={index}
                                 name={endPoint}
-                                component={component}
+                                component={ScreenComponent}
                                 options={option || {
                                     headerStyle : {
                                         backgroundColor : 'transparent',  
