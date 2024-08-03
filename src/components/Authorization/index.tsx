@@ -21,7 +21,10 @@ export function Authorization({children} : {children : React.ReactNode}) {
                 setUser(result.user)
 
             } catch (error) {
-                console.log(error)
+                if (error instanceof Error) {
+                    throw error
+                }
+                throw new Error("로그인이 필요한 페이지 입니다.")
             }
         }
         fetchUser()

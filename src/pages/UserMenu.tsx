@@ -73,11 +73,10 @@ const styles = StyleSheet.create({
 
 function UserMenuList() {
     const { user } = useUserContext()
-    console.log(user)
     return (
         <ScrollView style={styles.container}>
 
-            <Text style={styles.userName}>정예림</Text>
+            <Text style={styles.userName}>{user?.name}</Text>
             
             <View style={styles.imageBtnContainer}>
                 <TouchableOpacity>
