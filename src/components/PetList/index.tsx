@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, ScrollView, Image } from 'react-native'
 export {}
 import ProfileImage from '../../../assets/images/test-dogprofileimg.png'
-import Color from '../../Constants/Color'
+import Color from '../../constants/Color'
 import { Pet } from '../../types/pet'
 import { getDateString } from '../../Utils'
 

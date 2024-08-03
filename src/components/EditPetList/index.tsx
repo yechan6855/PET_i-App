@@ -3,7 +3,7 @@ export {}
 import ProfileImage from '../../../assets/images/test-dogprofileimg.png'
 import deleteIcon from '../../../assets/images/x-icon.png'
 
-import Color from '../../Constants/Color'
+import Color from '../../constants/Color'
 
 import defaultProfilePicture from '../../../assets/images/default-profile.png'
 

@@ -2,10 +2,10 @@ import React from 'react';
 import { Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, ImageBackground, Button } from 'react-native';
 
 import {PetList} from "../components/EditPetList"
-import style from '../Constants/style'
+import style from '../constants/Style'
 
 import petProfileImg from '../../assets/images/test-dogprofileimg.png';
-import Color from '../Constants/Color';
+import Color from '../constants/Color';
 
 
 const styles = StyleSheet.create({

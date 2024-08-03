@@ -5,7 +5,7 @@ import testProfileImage from '../../assets/images/test-dogprofileimg.png';
 import { Section } from '../components';
 import RNPickerSelect from 'react-native-picker-select'
 import { BirthDay, ImageFileProp, PetImage, PetProfileForm } from '../components/CreatePet';
-import Color from '../Constants/Color';
+import Color from '../constants/Color';
 import { Pet } from '../types/pet';
 import { launchImageLibrary } from "react-native-image-picker"
 import { breedList } from '../data/petBreedData';

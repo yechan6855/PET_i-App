@@ -11,7 +11,7 @@ import menuIcon from '../../assets/images/menuIcon.png';
 
 import { DeviceStatus,PetProfile, PetVital, VitalGraph } from '../components/Pet';
 import { petTestData } from '../data/petData';
-import Color from '../Constants/Color';
+import Color from '../constants/Color';
 //import { petVital } from '../components/Pet';
 
 
