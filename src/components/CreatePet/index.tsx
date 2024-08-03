@@ -5,6 +5,8 @@ import { useEffect, useMemo, useState } from "react";
 import { Asset, launchImageLibrary } from "react-native-image-picker";
 import maleIcon from '../../../assets/images/man.png'
 import femaleIcon from '../../../assets/images/female.png'
+import { breedList } from "../../data/petBreedData";
+
 const style = StyleSheet.create({
     birth : {
         flexDirection : "row",
@@ -131,6 +133,8 @@ export function PetProfileForm({onNameChange, onGenderChange} : {
         </View>
     )
 }
+
+
 
 const img = StyleSheet.create({
     profileImgContainer : {
