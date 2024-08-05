@@ -2,13 +2,15 @@ import { View, Text, StyleSheet, ScrollView, Image, Touchable, TouchableOpacity 
 export {}
 import ProfileImage from '../../../assets/images/test-dogprofileimg.png'
 import deleteIcon from '../../../assets/images/x-icon.png'
+import { Pet } from '../../types/pet'
+import { getDateString } from '../../Utils'
 
 import Color from '../../Constants/Color'
 
 import defaultProfilePicture from '../../../assets/images/default-profile.png'
 
 //import PetListData from '../..petListData.ts' 이하 라인처럼 가져와야함
-import { petListTestData } from '../../data/petListData'
+//import { petListTestData } from '../../data/petListData'
 
 const styles = StyleSheet.create({    
     scroll : {        
@@ -48,38 +50,44 @@ const styles = StyleSheet.create({
     },
 })
 
+interface PetListProp {
+    item: Pet[]
+    onDelete: (petId: number) => void
+    deletedPets: number[]
+}
 
-
-export function PetList() {
+export function PetList({ item, onDelete, deletedPets } : PetListProp) {
+    console.log('PetList items:', item);
     return (
         <ScrollView style={styles.scroll}>
             <View style={styles.list}>
             {
-                petListTestData.map((item, petId)=>{
-                    return(
-                        <Item key={petId}
-                            petId={item.petId}
-                            petName={item.name}
-                            petBirth={item.birthdate}
-                            profileImageUrl={item.profilePictureURL}
-                        />
-                    )
-                })
-            }
+                item.filter(pet => !deletedPets.includes(pet.petId)).map((pet) => (
+                <Item
+                    key={pet.petId}
+                    petId={pet.petId}
+                    petName={pet.name}
+                    petBirth={pet.birth}
+                    profileImageUrl={pet.profilePictureURL}
+                    onDelete={onDelete}
+                />
+            ))}
 
             </View>
         </ScrollView>
     )
 }
 
-function Item(prop : PetListItemProp) {
+function Item({petId, petName, petBirth, profileImageUrl, onDelete} : PetListItemProp) {
     return (
         <View style={styles.item}>
-   
+
+            <TouchableOpacity onPress={() => onDelete(petId)}>
                 <Image
                     style = {styles.deleteBtn}
                     source={deleteIcon}
                 />
+            </TouchableOpacity>
 
             <View>
                 <Image
@@ -88,13 +96,13 @@ function Item(prop : PetListItemProp) {
                         height : 100,
                         borderRadius : 50
                     }}
-                    source={prop.profileImageUrl ? {uri : prop.profileImageUrl} : defaultProfilePicture}
+                    source={profileImageUrl ? {uri : profileImageUrl} : defaultProfilePicture}
 
                 />
             </View>
             <View style={styles.information}>
-                <Text style={styles.informationText}>{prop.petName}</Text>
-                <Text style={styles.informationText}>{prop.petBirth}</Text>
+                <Text style={styles.informationText}>{petName}</Text>
+                <Text style={styles.informationText}>{getDateString(new Date(petBirth))}</Text>
             </View>
         </View>
     )    
@@ -102,10 +110,11 @@ function Item(prop : PetListItemProp) {
 
 interface PetListItemProp {
 
-    petId : string;  
+    petId : number;  
     petName : string;
     petBirth : string;
-    profileImageUrl : string; //null 시 넣어둔 기본이미지 
-    
+    profileImageUrl : string | null; //null시 넣어둔 기본이미지 
+    onDelete: (petId: number) => void
+
 }
 

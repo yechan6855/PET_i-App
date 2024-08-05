@@ -8,6 +8,9 @@ import { BirthDay, ImageFileProp, PetImage, PetProfileForm } from '../components
 import Color from '../Constants/Color';
 import { Pet } from '../types/pet';
 import { launchImageLibrary } from "react-native-image-picker"
+import { useNavigation } from "@react-navigation/native"
+import { NativeStackNavigationProp } from "@react-navigation/native-stack"
+import { RootStackParamList } from "."
 
 
 const styles = StyleSheet.create({
@@ -169,6 +172,8 @@ type PetFormAction =
 { key : "IMAGE", image : ImageFileProp }
 function CreatePet()
 {
+    const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>()
+
     function petReducer(state : PetForm, action : PetFormAction) : PetForm {
         switch (action.key) {
             case "NAME" :
@@ -299,7 +304,7 @@ function CreatePet()
                         ]}
                         />
                 </Section>
-                <TouchableOpacity style={styles.createBtn} onPress={createAction}>
+                <TouchableOpacity style={styles.createBtn} onPress={() => {createAction(); navigation.navigate("PetList");}}>
                     <Text style={{
                         fontSize : 18,
                         color : "#ffffff",
