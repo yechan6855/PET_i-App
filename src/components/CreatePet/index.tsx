@@ -1,6 +1,6 @@
 import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import testProfileImage from '../../../assets/images/test-dogprofileimg.png';
-import Color from "../../constants/Color";
+import Color from "../../Constants/Color";
 import { useEffect, useMemo, useState } from "react";
 import { Asset, launchImageLibrary } from "react-native-image-picker";
 import maleIcon from '../../../assets/images/man.png'

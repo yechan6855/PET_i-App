@@ -5,14 +5,14 @@ import testProfileImage from '../../assets/images/test-dogprofileimg.png';
 import { Section } from '../components';
 import RNPickerSelect from 'react-native-picker-select'
 import { BirthDay, ImageFileProp, PetImage, PetProfileForm } from '../components/CreatePet';
-import Color from '../constants/Color';
+import Color from '../Constants/Color';
 import { Pet } from '../types/pet';
 import { launchImageLibrary } from "react-native-image-picker"
 import { useNavigation } from "@react-navigation/native"
 import { NativeStackNavigationProp } from "@react-navigation/native-stack"
 import { RootStackParamList } from "."
 import { breedList } from '../data/petBreedData';
-import { getServerURL } from '../constants/Config';
+import { getServerURL } from '../Constants/Config';
 
 
 
