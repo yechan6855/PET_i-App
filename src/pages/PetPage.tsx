@@ -11,10 +11,10 @@ import menuIcon from '../../assets/images/menuIcon.png';
 
 import { getDateString } from '../utils';
 import { DeviceStatus,PetProfile, PetVital, VitalGraph } from '../components/Pet';
-//import { petTestData } from '../data/petData';
-import Color from '../constants/Color';
 import { useRoute, RouteProp } from '@react-navigation/native';
 import { RootStackParamList } from '.';
+import { petTestData } from '../data/petData';
+import Color from '../Constants/Color';
 //import { petVital } from '../components/Pet';
 
 

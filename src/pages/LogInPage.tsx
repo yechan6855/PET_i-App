@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, ImageBackground } from 'react-native';
 import textLogoWhite from '../../assets/images/peti-text-icon-w.png';
 import backgroundImage from '../../assets/images/background.jpg';
@@ -116,6 +116,18 @@ const styles = StyleSheet.create({
 });
 
 function LoginPage() {
+    useEffect(()=>{
+        // 로그인 되어있는지 검증
+        async function loginFetch() {
+            const response = await fetch(`http://10.0.2.2:5500/auth`)
+            const result = await response.json()
+            if ("user" in result) {
+                navigation.navigate("PetList")
+            }
+        }
+
+        loginFetch()
+    }, [])
     const { alert } = useUserContext()
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>()
     const loginRequest = useCallback( async (email : string, password : string) => {        

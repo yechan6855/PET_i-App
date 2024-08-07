@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, ImageBackground, Button } from 'react-native';
 
 import {PetList} from "../components/EditPetList"
-import style from '../constants/Style'
+import style from '../Constants/Style'
 import usePet from '../hooks/usePet';
 import { useUserContext } from '../hooks/useUserContext';
 
 import petProfileImg from '../../assets/images/test-dogprofileimg.png';
-import Color from '../constants/Color';
+import Color from '../Constants/Color';
 
 
 const styles = StyleSheet.create({
@@ -59,8 +59,8 @@ const styles = StyleSheet.create({
 
 function EditPetList()
 {
-    const { list, refetch } = usePet();
     const { user, alert } = useUserContext()
+    const { list: pets, refetch } = usePet()
     const [deletedPetIds, setDeletedPetIds] = useState<number[]>([])
 
     const handleDelete = (petId: number) => {
@@ -95,7 +95,8 @@ function EditPetList()
         }
     }
 
-    const filteredPets = list.filter(pet => !deletedPetIds.includes(pet.petId));
+
+    const filteredPets = pets.filter(pet => !deletedPetIds.includes(pet.petId));
 
     return(
     <View style = {styles.background}>

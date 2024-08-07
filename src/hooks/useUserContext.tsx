@@ -1,4 +1,4 @@
-import React, { createContext, useCallback, useContext, useReducer, useState } from "react";
+import React, { createContext, useCallback, useContext, useEffect, useReducer, useState } from "react";
 import { Alert } from "react-native";
 import { User } from "../types/user";
 interface UserContextProp
@@ -18,7 +18,7 @@ export function UserProvider({children} : {children : React.ReactNode}) {
             }
         ])
     }, [])
-    const [user, setUser] = useState<User|undefined>()
+    const [user, setUser] = useState<User | undefined>()
     return (
         <UserContext.Provider value={{
             alert,

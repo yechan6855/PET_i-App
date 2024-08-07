@@ -7,7 +7,7 @@ export default function usePet() {
 
     const fetchPets = useCallback(async () => {            
         try {
-            const response = await fetch("http://10.0.2.2:5500/pet");
+            const response = await fetch(`${getServerURL()}/pet`);
             if (!response.ok) {
                 const errorResult = await response.json();
                 throw new Error(errorResult.message || "Failed to fetch pets");

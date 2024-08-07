@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ComponentType } from "react";
 import { NativeStackNavigationOptions, NativeStackNavigationProp, createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import Developer from "./Developer";
@@ -86,16 +86,20 @@ const data : ReadonlyArray<PageConfig> = Object.freeze([
     }
 ])
 const Stack = createNativeStackNavigator<RootStackParamList>()
-
+const withAuthorization = (Component : ComponentType<any>) => {
+    return (prop : any) => (
+        <Authorization>
+            <Component {...prop}/>
+        </Authorization>
+    )
+}
 export const Pages = () => {
     return (
         <NavigationContainer>
             <Stack.Navigator initialRouteName="Developer">
                 {
-                    data.map(({endPoint, component, isAuth, option}, index) => {
-                        const ScreenComponent = isAuth ? (prop : any) => {
-                            return <Authorization>{React.createElement(component, prop)}</Authorization>
-                        } : component
+                    data.map(({endPoint, component, option, isAuth}, index) => {
+                        const ScreenComponent = isAuth ? withAuthorization(component) : component;
                         return (
                             <Stack.Screen
                                 key={index}

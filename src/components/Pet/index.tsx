@@ -1,5 +1,5 @@
 import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
-import Color from "../../constants/Color";
+import Color from "../../Constants/Color";
 
 import { petListTestData } from "../../data/petListData";
 
