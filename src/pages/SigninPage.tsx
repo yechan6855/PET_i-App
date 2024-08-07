@@ -1,10 +1,11 @@
 import React, { useCallback, act, useReducer, useState } from 'react';
 import { Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, ImageBackground, Button, KeyboardAvoidingView, Platform } from 'react-native';
-import Color from '../Constants/Color';
+import Color from '../constants/Color';
 import { useUserContext } from '../hooks/useUserContext';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '.';
+import { getServerURL } from '../constants/Config';
 
 const styles = StyleSheet.create({
 
@@ -124,7 +125,7 @@ function Signin() {
         password : string
     ) => {
         try {
-            const response = await fetch("http://10.0.2.2:5500/auth/register", {
+            const response = await fetch(`${getServerURL()}/auth/register`, {
                 method : "POST",
                 headers : {
                     "Content-Type" : "application/json"

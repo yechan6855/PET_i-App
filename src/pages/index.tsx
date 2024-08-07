@@ -3,7 +3,7 @@ import { NativeStackNavigationOptions, NativeStackNavigationProp, createNativeSt
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import Developer from "./Developer";
 import Pet from "./PetPage";
-import Color from "../Constants/Color";
+import Color from "../constants/Color";
 import { Pressable, Text, View, Image, StyleSheet, TouchableOpacity } from "react-native";
 import LogoImage from "../../assets/images/peti_logo.png"
 import UserMenuList from "./UserMenu";
@@ -13,7 +13,7 @@ import CreatePet from "./CreatePetPage";
 import EditPetList from "./EditPetListPage";
 import Signin from "./SigninPage";
 import backButtonImage from '../../assets/images/backbtn.png';
-import { Authorization } from "../components/Auth";
+import { Authorization } from "../components/Authorization";
 
 export type RootStackParamList = {
     Developer: undefined;
@@ -44,7 +44,7 @@ const data : ReadonlyArray<PageConfig> = Object.freeze([
     {
         endPoint : "UserMenu" ,
         component : UserMenuList,
-        isAuth : false
+        isAuth : true
     },
 
     {

@@ -5,7 +5,7 @@ import deleteIcon from '../../../assets/images/x-icon.png'
 import { Pet } from '../../types/pet'
 import { getDateString } from '../../Utils'
 
-import Color from '../../Constants/Color'
+import Color from '../../constants/Color'
 
 import defaultProfilePicture from '../../../assets/images/default-profile.png'
 import { useNavigation } from '@react-navigation/native'

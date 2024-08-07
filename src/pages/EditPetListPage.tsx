@@ -7,7 +7,7 @@ import usePet from '../hooks/usePet';
 import { useUserContext } from '../hooks/useUserContext';
 
 import petProfileImg from '../../assets/images/test-dogprofileimg.png';
-import Color from '../Constants/Color';
+import Color from '../constants/Color';
 
 
 const styles = StyleSheet.create({

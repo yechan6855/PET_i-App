@@ -1,11 +1,11 @@
-import React, { createContext, useCallback, useContext, useEffect, useState } from "react";
+import React, { createContext, useCallback, useContext, useEffect, useReducer, useState } from "react";
 import { Alert } from "react-native";
 import { User } from "../types/user";
 interface UserContextProp
 {
     alert : (title :string, message : string, okCallback? : () => void) => void;
     user : User | undefined;
-    setUser : React.Dispatch<React.SetStateAction<User | undefined>>;
+    setUser : React.Dispatch<React.SetStateAction<User | undefined>>
 }
 const UserContext = createContext<UserContextProp | undefined>(undefined)
 
