@@ -7,7 +7,7 @@ export type PetGender = 0 | 1 | 2
 export interface Pet
 {
     birthdate: string;
-    petId : string;    
+    petId : number;    
     name : string;    
     gender : PetGender;
     breed : string;
