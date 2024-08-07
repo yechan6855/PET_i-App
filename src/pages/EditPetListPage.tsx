@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, ImageBackground, Button } from 'react-native';
 
 import {PetList} from "../components/EditPetList"
-import style from '../Constants/style'
+import style from '../Constants/Style'
 import usePet from '../hooks/usePet';
 import { useUserContext } from '../hooks/useUserContext';
 

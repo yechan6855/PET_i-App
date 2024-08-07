@@ -2,11 +2,12 @@ import { Text, View, StyleSheet, Image, TouchableOpacity } from "react-native"
 import { PetList } from "../components/PetList"
 
 import editIconImage from '../../assets/images/edit-icon.png'
-import style from '../Constants/style';
+import style from '../Constants/Style';
 import usePet from "../hooks/usePet"
 import { useNavigation } from "@react-navigation/native"
 import { NativeStackNavigationProp } from "@react-navigation/native-stack"
 import { RootStackParamList } from "."
+import { useUserContext } from "../hooks/useUserContext";
 const styles = StyleSheet.create({
     container : {
         //backgroundColor : "red",
@@ -35,11 +36,12 @@ const styles = StyleSheet.create({
 export default function PetListPage() {
     const  { list } = usePet()    
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>()
+    const { user } = useUserContext()
     return (
         <View style={styles.container}>
             <View style={styles.top}>
                 <View>
-                    <Text style={styles.topGuideText}>정예림 님의 아이들</Text>
+                    <Text style={styles.topGuideText}>{user?.name} 님의 아이들</Text>
                 </View>
                 <TouchableOpacity onPress={() => {navigation.navigate("CreatePet")}}>
                     <Image

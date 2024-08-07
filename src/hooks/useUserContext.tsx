@@ -1,8 +1,11 @@
-import React, { createContext, useCallback, useContext } from "react";
+import React, { createContext, useCallback, useContext, useEffect, useState } from "react";
 import { Alert } from "react-native";
+import { User } from "../types/user";
 interface UserContextProp
 {
-    alert : (title :string, message : string, okCallback? : () => void) => void
+    alert : (title :string, message : string, okCallback? : () => void) => void;
+    user : User | undefined;
+    setUser : React.Dispatch<React.SetStateAction<User | undefined>>;
 }
 const UserContext = createContext<UserContextProp | undefined>(undefined)
 
@@ -15,9 +18,12 @@ export function UserProvider({children} : {children : React.ReactNode}) {
             }
         ])
     }, [])
+    const [user, setUser] = useState<User | undefined>()
     return (
         <UserContext.Provider value={{
-            alert
+            alert,
+            user,
+            setUser
         }}>
             { children }
         </UserContext.Provider>
