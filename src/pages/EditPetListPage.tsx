@@ -59,8 +59,8 @@ const styles = StyleSheet.create({
 
 function EditPetList()
 {
-    const { list: pets, refetch } = usePet();
-    const { alert } = useUserContext()
+    const { user, alert } = useUserContext()
+    const { list: pets, refetch } = usePet()
     const [deletedPetIds, setDeletedPetIds] = useState<number[]>([])
 
     const handleDelete = (petId: number) => {
@@ -95,6 +95,7 @@ function EditPetList()
         }
     }
 
+
     const filteredPets = pets.filter(pet => !deletedPetIds.includes(pet.petId));
 
     return(
@@ -103,7 +104,7 @@ function EditPetList()
         <View style={styles.container}>
             <View style={styles.top}>
                 <View>
-                    <Text style={styles.topGuideText}>정예림 님의 아이들</Text>
+                    <Text style={styles.topGuideText}>{user?.name} 님의 아이들</Text>
                 </View>
             </View>
             <View style={styles.section}>

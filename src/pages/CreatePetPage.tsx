@@ -15,7 +15,6 @@ import { breedList } from '../data/petBreedData';
 import { getServerURL } from '../Constants/Config';
 
 
-
 const styles = StyleSheet.create({
 
     container :{
@@ -255,7 +254,7 @@ function CreatePet()
         formData.append("birth", birth)
         formData.append("image", {...image, name : image.fileName})
         // console.log(formData)
-        const response = await fetch(`${getServerURL()}/pet`, {
+        const response = await fetch("http://10.0.2.2:5500/pet", {
             method : "POST",
             body : formData,
             headers : {
@@ -300,11 +299,11 @@ function CreatePet()
                 >
                     <RNPickerSelect                        
                         onValueChange={(value) => dispatch({key:"BREED", breed : value})}
-                        items={breedList.map((item) => ({
-                            label : item,
-                            value : item,
-                        }))}
-                       
+                        items={[
+                            { label: '말티즈', value: '말티즈' },
+                            { label: 'Baseball', value: 'baseball' },
+                            { label: 'Hockey', value: 'hockey' },
+                        ]}
                         />
                 </Section>
                 <TouchableOpacity style={styles.createBtn} onPress={() => {createAction(); navigation.navigate("PetList");}}>

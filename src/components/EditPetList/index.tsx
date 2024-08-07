@@ -3,9 +3,10 @@ export {}
 import ProfileImage from '../../../assets/images/test-dogprofileimg.png'
 import deleteIcon from '../../../assets/images/x-icon.png'
 import { Pet } from '../../types/pet'
-import { getDateString } from '../../Utils'
+import { getDateString } from '../../utils'
 
-import Color from '../../constants/Color'
+
+import Color from '../../Constants/Color'
 
 import defaultProfilePicture from '../../../assets/images/default-profile.png'
 import { useNavigation } from '@react-navigation/native'
@@ -44,8 +45,8 @@ const styles = StyleSheet.create({
     },
     deleteBtn : {
         position : 'absolute',
-        top: 0,   
-        right: 0, 
+        top: -10,   
+        left: 55, 
         margin: 10, 
         width: 20,
         height: 20,
@@ -61,6 +62,7 @@ interface PetListProp {
 
 export function PetList({ item, onDelete, deletedPets } : PetListProp) {
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>()
+
     return (
         <ScrollView style={styles.scroll}>
             <View style={styles.list}>
@@ -75,6 +77,7 @@ export function PetList({ item, onDelete, deletedPets } : PetListProp) {
                     onDelete={onDelete}
                 />
             ))}
+
                 <TouchableOpacity 
                     style={[styles.item, {backgroundColor : "gray"}]}
                     onPress={() => {navigation.navigate("CreatePet")}}

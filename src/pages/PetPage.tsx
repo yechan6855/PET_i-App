@@ -1,5 +1,5 @@
-import React from 'react';
-import { Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, ImageBackground, Button } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, ImageBackground, Button, AccessibilityInfo } from 'react-native';
 
 import batteryState00 from '../../assets/images/batteryState00.png';
 import movementstateRun from '../../assets/images/movementstate-run.png';
@@ -9,7 +9,10 @@ import alertIcon from '../../assets/images/alert-icon.png';
 import logoIconWhite from '../../assets/images/petiLogoW.png';
 import menuIcon from '../../assets/images/menuIcon.png';
 
+import { getDateString } from '../utils';
 import { DeviceStatus,PetProfile, PetVital, VitalGraph } from '../components/Pet';
+import { useRoute, RouteProp } from '@react-navigation/native';
+import { RootStackParamList } from '.';
 import { petTestData } from '../data/petData';
 import Color from '../Constants/Color';
 //import { petVital } from '../components/Pet';
@@ -83,8 +86,9 @@ const styles = StyleSheet.create({
 
 });
 
-function Pet() {
-    const petData = petTestData[0]
+function PetPage() {
+    const route = useRoute<RouteProp<RootStackParamList, 'PetPage'>>()
+    const { pet } = route.params
 
     const vitalData = {
         bpm: 180,
@@ -97,9 +101,9 @@ function Pet() {
         <View style = {styles.innerContainer}>
             <View style = {styles.nameSection}>
                 <DeviceStatus
-                    petName={petData.name}
+                    petName={pet.name}
                     batteryStatus={"https://cdn.pixabay.com/photo/2014/03/25/15/25/battery-terminals-296802_1280.png"}
-                    petId={"00"}
+                    petId={pet.petId.toString()}
                 />
             </View>
 
@@ -111,12 +115,11 @@ function Pet() {
                     />
                 </View>
                 <PetProfile
-                    profilePictureUrl={petData.profilePictureURL}
-                    petId={petData.petId}
-                    petName={petData.name}
-                    gender={petData.gender}
-                    breed={petData.breed}
-                    birthdate={petData.birthdate}
+                    profilePictureUrl={pet.profilePictureURL}
+                    petName={pet.name}
+                    gender={pet.gender}
+                    breed={pet.breed}
+                    birthdate={getDateString(new Date(pet.birth))}
                 />
 
             </View>
@@ -157,4 +160,4 @@ function Pet() {
     );
 }
 
-export default Pet;
+export default PetPage;

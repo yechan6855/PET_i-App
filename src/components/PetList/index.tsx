@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, ScrollView, Image } from 'react-native'
+import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity } from 'react-native'
 export {}
 import ProfileImage from '../../../assets/images/test-dogprofileimg.png'
 import Color from '../../Constants/Color'
@@ -34,14 +34,15 @@ const style = StyleSheet.create({
 })
 interface PetListProp {
     item : Pet[]
+    onItemPress: (pet: Pet) => void
 }
-export function PetList({item} : PetListProp) {
+export function PetList({item, onItemPress} : PetListProp) {
     return (
         <ScrollView style={style.scroll}>
             <View style={style.list}>
                 {
                     item.map((pet) => {
-                        return <Item key={pet.petId} pet={pet}/>
+                        return <Item key={pet.petId} pet={pet} onPress={() => onItemPress(pet)}/>
                     })
                 }
             </View>
@@ -49,9 +50,9 @@ export function PetList({item} : PetListProp) {
     )
 }
 
-function Item({pet} : {pet : Pet}) {
+function Item({pet, onPress} : ItemProps) {
     return (
-        <View style={style.item}>
+        <TouchableOpacity style={style.item} onPress={onPress}>
             <View>
                 <Image
                     style={{
@@ -66,7 +67,11 @@ function Item({pet} : {pet : Pet}) {
                 <Text style={style.informationText}>{pet.name}</Text>
                 <Text style={style.informationText}>{getDateString(new Date(pet.birth))}</Text>
             </View>
-        </View>
+        </TouchableOpacity>
     )    
 }
 
+interface ItemProps {
+    pet: Pet
+    onPress: () => void
+}
