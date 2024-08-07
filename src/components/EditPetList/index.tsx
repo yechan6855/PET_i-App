@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, ScrollView, Image, Touchable, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, ScrollView, Image, Touchable, TouchableOpacity, Pressable } from 'react-native'
 export {}
 import ProfileImage from '../../../assets/images/test-dogprofileimg.png'
 import deleteIcon from '../../../assets/images/x-icon.png'
@@ -8,6 +8,9 @@ import { getDateString } from '../../Utils'
 import Color from '../../Constants/Color'
 
 import defaultProfilePicture from '../../../assets/images/default-profile.png'
+import { useNavigation } from '@react-navigation/native'
+import { NativeStackNavigationProp } from '@react-navigation/native-stack'
+import { RootStackParamList } from '../../pages'
 
 //import PetListData from '../..petListData.ts' 이하 라인처럼 가져와야함
 //import { petListTestData } from '../../data/petListData'
@@ -57,7 +60,7 @@ interface PetListProp {
 }
 
 export function PetList({ item, onDelete, deletedPets } : PetListProp) {
-    console.log('PetList items:', item);
+    const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>()
     return (
         <ScrollView style={styles.scroll}>
             <View style={styles.list}>
@@ -72,6 +75,15 @@ export function PetList({ item, onDelete, deletedPets } : PetListProp) {
                     onDelete={onDelete}
                 />
             ))}
+                <TouchableOpacity 
+                    style={[styles.item, {backgroundColor : "gray"}]}
+                    onPress={() => {navigation.navigate("CreatePet")}}
+                >
+                    <Image style={{
+                        width : 30,
+                        height : 30
+                    }} source={deleteIcon}/>
+                </TouchableOpacity>
 
             </View>
         </ScrollView>
