@@ -167,7 +167,6 @@ interface deviceStatusProp {
 }
 
 interface PetProfileDataProp {
-    petId : string,
     petName : string,
     gender : number,
     birthdate : string,

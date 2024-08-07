@@ -20,7 +20,7 @@ function Developer({navigation}: {navigation: NavigationProp<ParamListBase>}) {
 
             <Button
             title = "Pet" 
-            onPress={()=> navigation.navigate('Pet')}           
+            onPress={()=> navigation.navigate('PetPage')}           
             />
 
             <Button

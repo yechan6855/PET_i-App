@@ -2,7 +2,7 @@ import React from "react";
 import { NativeStackNavigationOptions, NativeStackNavigationProp, createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import Developer from "./Developer";
-import Pet from "./PetPage";
+import PetPage from "./PetPage";
 import Color from "../constants/Color";
 import { Pressable, Text, View, Image, StyleSheet, TouchableOpacity } from "react-native";
 import LogoImage from "../../assets/images/peti_logo.png"
@@ -14,10 +14,11 @@ import EditPetList from "./EditPetListPage";
 import Signin from "./SigninPage";
 import backButtonImage from '../../assets/images/backbtn.png';
 import { Authorization } from "../components/Authorization";
+import { Pet } from "../types/pet";
 
 export type RootStackParamList = {
     Developer: undefined;
-    Pet: undefined;
+    PetPage: { pet : Pet };
     UserMenu : undefined;
     Login : undefined;
     PetList : undefined;
@@ -56,8 +57,8 @@ const data : ReadonlyArray<PageConfig> = Object.freeze([
         isAuth : false
     },
     {
-        endPoint : "Pet",
-        component : Pet,
+        endPoint : "PetPage",
+        component : PetPage,
         isAuth : false
     },
     {

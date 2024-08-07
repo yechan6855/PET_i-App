@@ -8,9 +8,9 @@ import { BirthDay, ImageFileProp, PetImage, PetProfileForm } from '../components
 import Color from '../constants/Color';
 import { Pet } from '../types/pet';
 import { launchImageLibrary } from "react-native-image-picker"
-import { breedList } from '../data/petBreedData';
-import { getServerURL } from '../constants/Config';
-
+import { useNavigation } from "@react-navigation/native"
+import { NativeStackNavigationProp } from "@react-navigation/native-stack"
+import { RootStackParamList } from "."
 
 
 const styles = StyleSheet.create({
@@ -172,6 +172,8 @@ type PetFormAction =
 { key : "IMAGE", image : ImageFileProp }
 function CreatePet()
 {
+    const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>()
+
     function petReducer(state : PetForm, action : PetFormAction) : PetForm {
         switch (action.key) {
             case "NAME" :
@@ -250,7 +252,7 @@ function CreatePet()
         formData.append("birth", birth)
         formData.append("image", {...image, name : image.fileName})
         // console.log(formData)
-        const response = await fetch(`${getServerURL()}/pet`, {
+        const response = await fetch("http://10.0.2.2:5500/pet", {
             method : "POST",
             body : formData,
             headers : {
@@ -295,14 +297,14 @@ function CreatePet()
                 >
                     <RNPickerSelect                        
                         onValueChange={(value) => dispatch({key:"BREED", breed : value})}
-                        items={breedList.map((item) => ({
-                            label : item,
-                            value : item,
-                        }))}
-                       
+                        items={[
+                            { label: '말티즈', value: '말티즈' },
+                            { label: 'Baseball', value: 'baseball' },
+                            { label: 'Hockey', value: 'hockey' },
+                        ]}
                         />
                 </Section>
-                <TouchableOpacity style={styles.createBtn} onPress={createAction}>
+                <TouchableOpacity style={styles.createBtn} onPress={() => {createAction()}}>
                     <Text style={{
                         fontSize : 18,
                         color : "#ffffff",

@@ -4,10 +4,12 @@ import { PetList } from "../components/PetList"
 import editIconImage from '../../assets/images/edit-icon.png'
 import style from '../constants/Style';
 import usePet from "../hooks/usePet"
-import { useNavigation } from "@react-navigation/native"
+import { useNavigation, useFocusEffect } from "@react-navigation/native"
 import { NativeStackNavigationProp } from "@react-navigation/native-stack"
 import { RootStackParamList } from "."
 import { useUserContext } from "../hooks/useUserContext";
+import { useCallback } from "react";
+import { Pet, PetDetail } from "../types/pet";
 const styles = StyleSheet.create({
     container : {
         //backgroundColor : "red",
@@ -34,9 +36,20 @@ const styles = StyleSheet.create({
     },
 })
 export default function PetListPage() {
-    const  { list } = usePet()    
+    const  { list, refetch } = usePet()    
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>()
     const { user } = useUserContext()
+    
+    const clickItemAction = useCallback((pet : Pet) => {
+        navigation.navigate("PetPage", { pet })
+    }, [navigation])
+
+    useFocusEffect(
+        useCallback(() => {
+            refetch()
+        }, [refetch])
+    )
+
     return (
         <View style={styles.container}>
             <View style={styles.top}>
@@ -54,7 +67,7 @@ export default function PetListPage() {
                 </TouchableOpacity>
             </View>
             <View style={styles.section}>
-                <PetList item={list}/>
+                <PetList item={list} onItemPress={clickItemAction} />
             </View>
         </View>
     )
