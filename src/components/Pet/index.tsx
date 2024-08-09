@@ -104,7 +104,7 @@ export function PetProfile(prop : PetProfileDataProp) // 프사 - 이름/종 - �
                 </TouchableOpacity>
                 <View style = {styles.profileData}>
                     <Image
-                        source={prop.profilePictureUrl ? {uri : prop.profilePictureUrl} : defaultProfilePicture}
+                        source={prop.profilePictureUrl ? {uri : `http://192.168.217.1:5500/img/${prop.profilePictureUrl}`} : defaultProfilePicture}
                         style = {{width : 110,
                             height : 110,
                             borderRadius : 100

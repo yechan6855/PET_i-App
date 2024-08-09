@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { getServerURL } from "../../constants/Config";
+import { getServerURL } from "../../Constants/Config";
 import { User } from "../../types/user";
 import { useUserContext } from "../../hooks/useUserContext";
 

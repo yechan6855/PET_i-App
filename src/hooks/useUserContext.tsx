@@ -19,6 +19,9 @@ export function UserProvider({children} : {children : React.ReactNode}) {
         ])
     }, [])
     const [user, setUser] = useState<User | undefined>()
+
+    
+
     return (
         <UserContext.Provider value={{
             alert,

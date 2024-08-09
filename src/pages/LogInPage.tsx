@@ -6,7 +6,7 @@ import { useUserContext } from '../hooks/useUserContext';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '.';
-import { getServerURL } from '../constants/Config';
+import { getServerURL } from '../Constants/Config';
 
 const styles = StyleSheet.create({
 

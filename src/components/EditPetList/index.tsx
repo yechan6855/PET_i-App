@@ -94,6 +94,8 @@ export function PetList({ item, onDelete, deletedPets } : PetListProp) {
 }
 
 function Item({petId, petName, petBirth, profileImageUrl, onDelete} : PetListItemProp) {
+    
+    
     return (
         <View style={styles.item}>
 
@@ -111,7 +113,7 @@ function Item({petId, petName, petBirth, profileImageUrl, onDelete} : PetListIte
                         height : 100,
                         borderRadius : 50
                     }}
-                    source={profileImageUrl ? {uri : profileImageUrl} : defaultProfilePicture}
+                    source={profileImageUrl ? {uri : `http://192.168.217.1:5500/img/${profileImageUrl}`} : defaultProfilePicture}
 
                 />
             </View>

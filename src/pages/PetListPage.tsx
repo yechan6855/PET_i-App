@@ -2,7 +2,7 @@ import { Text, View, StyleSheet, Image, TouchableOpacity } from "react-native"
 import { PetList } from "../components/PetList"
 
 import editIconImage from '../../assets/images/edit-icon.png'
-import style from '../Constants/Style';
+import style from '../Constants/styles';
 import usePet from "../hooks/usePet"
 import { useNavigation, useFocusEffect } from "@react-navigation/native"
 import { NativeStackNavigationProp } from "@react-navigation/native-stack"
@@ -39,6 +39,7 @@ export default function PetListPage() {
     const  { list, refetch } = usePet()    
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>()
     const { user } = useUserContext()
+    console.log('User:', user);
     
     const clickItemAction = useCallback((pet : Pet) => {
         navigation.navigate("PetPage", { pet })
@@ -56,7 +57,7 @@ export default function PetListPage() {
                 <View>
                     <Text style={styles.topGuideText}>{user?.name} 님의 아이들</Text>
                 </View>
-                <TouchableOpacity onPress={() => {navigation.navigate("CreatePet")}}>
+                <TouchableOpacity onPress={() => {navigation.navigate("EditPetList")}}>
                     <Image
                         source={editIconImage}
                         style={{
