@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, ImageBackground, Button } from 'react-native';
 
 import {PetList} from "../components/EditPetList"
-import style from '../Constants/styles'
+import style from '../Constants/Styles'
 import usePet from '../hooks/usePet';
 import { useUserContext } from '../hooks/useUserContext';
 
@@ -33,7 +33,8 @@ const styles = StyleSheet.create({
     },
     topGuideText :  {
         fontSize : 17,
-        fontWeight : '600'
+        fontWeight : '600',
+        color : 'black',
     },
     section : {
         // backgroundColor : "green",
@@ -46,7 +47,8 @@ const styles = StyleSheet.create({
         backgroundColor : Color.DEEP_ORANGE,
         borderRadius : 12,
         justifyContent : 'center',
-        alignItems : 'center'
+        alignItems : 'center',
+        marginBottom : -15,
     },
     btnText :{
         fontSize : 16,

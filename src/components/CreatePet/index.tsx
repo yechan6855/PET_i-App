@@ -10,17 +10,19 @@ import { breedList } from "../../data/petBreedData";
 const style = StyleSheet.create({
     birth : {
         flexDirection : "row",
-        justifyContent : "center"
+        justifyContent : "center",
     },
     birthChild : {
         borderColor : "black",
     },
     birthChildInput : {
+        color : 'black',
+        width : '110%',
         padding : 0,
-        fontSize : 36,
+        fontSize : 42,
         fontWeight : '900',
         textAlign : "left",
-        paddingHorizontal : 14
+        paddingHorizontal : 12,
     },    
 })
 
@@ -42,6 +44,7 @@ export function BirthDay({onChangeDate} : {onChangeDate : (date : string | undef
             <View style={style.birthChild}>
                 <TextInput 
                     style={style.birthChildInput} 
+                    placeholderTextColor='black'
                     placeholder='YYYY' 
                     maxLength={4}
                     keyboardType='numeric'
@@ -54,6 +57,7 @@ export function BirthDay({onChangeDate} : {onChangeDate : (date : string | undef
             <View style={style.birthChild}>
                 <TextInput 
                     style={style.birthChildInput}
+                    placeholderTextColor='black'
                     placeholder='MM'
                     maxLength={2} 
                     keyboardType='numeric'
@@ -66,6 +70,7 @@ export function BirthDay({onChangeDate} : {onChangeDate : (date : string | undef
             <View style={style.birthChild}>
                 <TextInput 
                     style={style.birthChildInput} 
+                    placeholderTextColor='black'
                     placeholder='DD' 
                     maxLength={2} 
                     keyboardType='numeric'
@@ -100,12 +105,15 @@ const profile = StyleSheet.create({
     genderIcon : {
         // width : "50%",
         // height : "50%",
-        // borderWidth : 1,        
+        // borderWidth : 1,
+        padding: 16,
+        borderRadius: 8,        
     },
     genderIconImage : {
-        width : 80,
-        height : 80,
-        borderRadius : 8
+        width : 60,
+        height : 60,
+        borderRadius : 8,
+
     }
 })
 export function PetProfileForm({onNameChange, onGenderChange} : {
@@ -123,10 +131,10 @@ export function PetProfileForm({onNameChange, onGenderChange} : {
                 <TextInput style={profile.input} onChangeText={onNameChange} placeholder="이름을 입력하여주세요"/>
             </View>
             <View style={profile.gender}>
-                <TouchableOpacity style={profile.genderIcon} onPress={()=>{setGender(0)}}>
+                <TouchableOpacity style={[profile.genderIcon, gender === 0 && { backgroundColor: Color.BASIG }]} onPress={()=>{setGender(0)}}>
                     <Image style={profile.genderIconImage} source={maleIcon}/>
                 </TouchableOpacity>
-                <TouchableOpacity style={profile.genderIcon} onPress={()=>{setGender(1)}}>
+                <TouchableOpacity style={[profile.genderIcon, gender === 1 && { backgroundColor: Color.BASIG }]} onPress={()=>{setGender(1)}}>
                     <Image style={profile.genderIconImage} source={femaleIcon}/>
                 </TouchableOpacity>
             </View>
@@ -212,7 +220,7 @@ export function PetImage({onFileChange} : {onFileChange : (file : ImageFileProp)
                 <Text style={{
                     fontWeight : '600',
                     color : "#ffffff"
-                }}>프로필 업로드</Text>
+                }}>프로필 사진 업로드</Text>
             </TouchableOpacity>
         </View>
     )        

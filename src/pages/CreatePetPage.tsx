@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
         
     },
     guideText : {
+        color : 'black',
         fontSize : 18,
         fontWeight : '900'
     },
@@ -79,7 +80,7 @@ const styles = StyleSheet.create({
     birthdateSection : {
         width : '100%',
         height : '15%',
-        backgroundColor : '#6d1a00'
+        backgroundColor : '#6d1a00',
     },
 
     sectionTitle :{
@@ -285,6 +286,7 @@ function CreatePet()
                     title='생년월일'
                     style={{
                         // flex :1
+                        marginBottom: 20,
                     }}
                 >
                     <BirthDay
@@ -294,7 +296,7 @@ function CreatePet()
                 <Section
                     title='품종'
                     style={{
-                        flex :1,
+                        flex :1
                     }}
                 >
                     <RNPickerSelect                        

@@ -2,8 +2,9 @@ import { View, Text, StyleSheet, ScrollView, Image, Touchable, TouchableOpacity,
 export {}
 import ProfileImage from '../../../assets/images/test-dogprofileimg.png'
 import deleteIcon from '../../../assets/images/x-icon.png'
+import plusIcon from '../../../assets/images/plus-icon.png'
 import { Pet } from '../../types/pet'
-import { getDateString } from '../../utils'
+import { getDateString } from '../../Utils'
 
 
 import Color from '../../Constants/Color'
@@ -29,11 +30,11 @@ const styles = StyleSheet.create({
     item: {
         backgroundColor: "white",
         width : '48%',
-        height : 200,
+        height : 220,
         marginBottom : 20,
         justifyContent : 'space-evenly',
         alignItems : 'center',
-        borderRadius : 12,
+        borderRadius : 20,
         position : 'relative'
     },
     information : {
@@ -41,7 +42,8 @@ const styles = StyleSheet.create({
     },
     informationText : {
         fontSize : 16,
-        fontWeight : "900"
+        fontWeight : "900",
+        color : 'black',
     },
     deleteBtn : {
         position : 'absolute',
@@ -79,13 +81,13 @@ export function PetList({ item, onDelete, deletedPets } : PetListProp) {
             ))}
 
                 <TouchableOpacity 
-                    style={[styles.item, {backgroundColor : "gray"}]}
+                    style={[styles.item, {backgroundColor : "rgba(255, 255, 255, 0.7)"}]}
                     onPress={() => {navigation.navigate("CreatePet")}}
                 >
                     <Image style={{
-                        width : 30,
-                        height : 30
-                    }} source={deleteIcon}/>
+                        width : 70,
+                        height : 70
+                    }} source={plusIcon}/>
                 </TouchableOpacity>
 
             </View>
@@ -109,9 +111,9 @@ function Item({petId, petName, petBirth, profileImageUrl, onDelete} : PetListIte
             <View>
                 <Image
                     style={{
-                        width : 100,
-                        height : 100,
-                        borderRadius : 50
+                        width : 120,
+                        height : 120,
+                        borderRadius : 60
                     }}
                     source={profileImageUrl ? {uri : `http://192.168.217.1:5500/img/${profileImageUrl}`} : defaultProfilePicture}
 

@@ -77,6 +77,9 @@ const data : ReadonlyArray<PageConfig> = Object.freeze([
     {
         endPoint : "EditPetList",
         component : EditPetList,
+        option : {
+            headerShown : false
+        },
         isAuth : false
     },
     {
@@ -107,10 +110,11 @@ export const Pages = () => {
                                 component={ScreenComponent}
                                 options={option || {
                                     headerStyle : {
-                                        backgroundColor : 'transparent',  
+                                        backgroundColor : 'white',  
                                     },
                                     headerTitle : "",
-                                    headerLeft : BackButton
+                                    headerLeft : BackButton,
+                                    headerShadowVisible: false,
                                 }}
                             />
                         )

@@ -9,7 +9,9 @@ import alertIcon from '../../assets/images/alert-icon.png';
 import logoIconWhite from '../../assets/images/petiLogoW.png';
 import menuIcon from '../../assets/images/menuIcon.png';
 
-import { getDateString } from '../utils';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { getDateString } from '../Utils';
 import { DeviceStatus,PetProfile, PetVital, VitalGraph } from '../components/Pet';
 import { useRoute, RouteProp } from '@react-navigation/native';
 import { RootStackParamList } from '.';
@@ -19,15 +21,17 @@ import Color from '../Constants/Color';
 
 
 const styles = StyleSheet.create({
-
+    background : {
+        width : '100%',
+        height : '100%',
+        backgroundColor : 'white'
+    },
     container :{
         height : '100%',
         width : '100%',
         alignItems : 'center',
         justifyContent : 'center',
-        backgroundColor : 'white'
     },
-
     innerContainer: {
         height: '90%',
         width : '90%',
@@ -41,13 +45,13 @@ const styles = StyleSheet.create({
         backgroundColor : Color.DEEP_ORANGE,
         justifyContent : 'space-between',
         alignItems : 'center',
-        flexDirection : 'row'
+        flexDirection : 'row',
     },
     bottomIcon :{
         resizeMode : 'contain',
         height : 50,
         width : 60,
-        //margin : 5
+        marginHorizontal : 25
     },
     nameSection :{
         width :'100%',
@@ -88,6 +92,7 @@ const styles = StyleSheet.create({
 
 function PetPage() {
     const route = useRoute<RouteProp<RootStackParamList, 'PetPage'>>()
+    const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>()
     const { pet } = route.params
 
     const vitalData = {
@@ -96,13 +101,14 @@ function PetPage() {
     };
 
     return(
+    <View style={styles.background}>
     <View style = {styles.container}>    
         
         <View style = {styles.innerContainer}>
             <View style = {styles.nameSection}>
                 <DeviceStatus
                     petName={pet.name}
-                    batteryStatus={"https://cdn.pixabay.com/photo/2014/03/25/15/25/battery-terminals-296802_1280.png"}
+                    batteryStatus={'batteryState02.png'}
                     petId={pet.petId.toString()}
                 />
             </View>
@@ -141,21 +147,28 @@ function PetPage() {
         </View>
 
         <View style = {styles.bottom}>
-            <Image
-                source={alertIcon}
-                style = {styles.bottomIcon}
-            />
-            <Image
-                source={logoIconWhite}
-                style = {styles.bottomIcon}
-            />
-            <Image
-                source={menuIcon}
-                style ={styles.bottomIcon}
-            />
+            <TouchableOpacity>
+                <Image
+                    source={alertIcon}
+                    style = {styles.bottomIcon}
+                />
+            </TouchableOpacity>
+            <TouchableOpacity>
+                <Image
+                    source={logoIconWhite}
+                    style = {styles.bottomIcon}
+                />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => {navigation.navigate('UserMenu')}}>
+                <Image
+                    source={menuIcon}
+                    style ={styles.bottomIcon}
+                />
+            </TouchableOpacity>
 
         </View>
-    </View>  
+    </View>
+    </View>
 
     );
 }

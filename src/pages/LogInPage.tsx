@@ -1,20 +1,25 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, ImageBackground } from 'react-native';
+import { CheckBox } from 'react-native-btr';
 import textLogoWhite from '../../assets/images/peti-text-icon-w.png';
 import backgroundImage from '../../assets/images/background.jpg';
 import { useUserContext } from '../hooks/useUserContext';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '.';
 import { getServerURL } from '../Constants/Config';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const styles = StyleSheet.create({
 
     BackgroundImage : {
         flex: 1,
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
-
+    Overlay: {
+        ...StyleSheet.absoluteFillObject,
+        backgroundColor: 'rgba(0, 0, 0, 0.5)'
+    },
     Container: {
         //최상위 부모_상단 / 하단 공백, 수직정렬
         width : '100%',
@@ -49,7 +54,7 @@ const styles = StyleSheet.create({
     },
     TextInputLabel:{ 
         width : 60,
-        fontSize:20,
+        fontSize:24,
         fontWeight:'bold',
         //backgroundColor:'white',
         color : 'white',
@@ -59,16 +64,26 @@ const styles = StyleSheet.create({
     input:{
         width : '80%',
         textAlign : 'center',
-        borderBottomWidth: 1,
-        borderBottomColor: 'white',
+        borderBottomWidth: 2,
+        borderBottomColor: 'gray',
         //backgroundColor : '#d2ea2d'
         color : "#fff",
         fontWeight : '600',
         fontSize : 22
     },
 
-
-
+    CheckBoxContainer:{
+        flexDirection: 'row', 
+        alignItems: 'center',
+        marginRight: 200,
+    },
+    CheckBoxText:{
+        fontSize: 18,
+        marginLeft: 10,
+        color: 'white',
+        paddingBottom:4,
+        
+    },
 
     LoginBtnContainer:{
         flexDirection: 'column',
@@ -82,6 +97,7 @@ const styles = StyleSheet.create({
         backgroundColor:'#EA5A2D',
         paddingTop : 12,
         paddingBottom : 12,
+        marginTop: 30,
         marginBottom : 16
     },
     SigninBtn:{
@@ -106,7 +122,8 @@ const styles = StyleSheet.create({
     TextFindingIDPw : {
         textAlign : 'center',
         color : 'white',
-        fontSize : 18
+        fontSize : 18,
+        paddingTop : 100
     },
     FindingIDPw : {
         marginTop : 50,
@@ -116,6 +133,13 @@ const styles = StyleSheet.create({
 });
 
 function LoginPage() {
+    const { alert } = useUserContext()
+    const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>()
+
+    const [inputEmail, setInputEmail] = useState<string>()
+    const [inputPassword, setInputPassword] = useState<string>()
+    const [rememberMe, setRememberMe] = useState<boolean>(false)
+
     useEffect(()=>{
         // 로그인 되어있는지 검증
         async function loginFetch() {
@@ -128,8 +152,32 @@ function LoginPage() {
 
         loginFetch()
     }, [])
-    const { alert } = useUserContext()
-    const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>()
+
+    //로그인 정보 저장 여부, 이메일 불러오기   
+    useEffect(() => {
+        async function loadRememberMe() {
+            const savedRememberMe = await AsyncStorage.getItem('rememberMe')
+            const savedEmail = await AsyncStorage.getItem('inputEmail')
+            if (savedRememberMe !== null) {
+                const parsedRemeberMe = JSON.parse(savedRememberMe)
+                setRememberMe(parsedRemeberMe)
+                if (parsedRemeberMe && savedEmail !== null) {
+                    setInputEmail(savedEmail)
+                }
+            }
+        }
+        loadRememberMe()
+    }, [])
+
+    useFocusEffect(
+        useCallback(() => {
+            if (!rememberMe) {
+                setInputEmail('')
+                setInputPassword('')
+            }
+        }, [rememberMe])
+    )
+
     const loginRequest = useCallback( async (email : string, password : string) => {        
         
         try {
@@ -147,6 +195,15 @@ function LoginPage() {
                 alert("로그인 성공", `${result.user.username}님 반갑습니다.`, () => {
                 navigation.navigate("PetList")
             })
+
+            if (rememberMe) {
+                await AsyncStorage.setItem('rememberMe', JSON.stringify(rememberMe))
+                await AsyncStorage.setItem('inputEmail', email)
+            } else {
+                await AsyncStorage.removeItem('rememberMe')
+                await AsyncStorage.removeItem('inputEmail')
+            }
+
         } catch (error) {
             if (error instanceof Error) {
                 alert("로그인 실패", error.message)
@@ -157,10 +214,8 @@ function LoginPage() {
             console.error(error)
         }
         
-    }, [])
-    
-    const [inputEmail, setInputEmail] = useState<string>()
-    const [inputPassword, setInputPassword] = useState<string>()
+    }, [rememberMe])
+
     const loginAction = useCallback(async () => {
         if (!inputEmail) {
             alert("경고", "이메일을 입력 하여 주세요")
@@ -177,8 +232,13 @@ function LoginPage() {
         // console.log("회원가입 페이지 이동")
         navigation.navigate("Signin")
     }, [])
+
+
+
+
     return (
         <ImageBackground source={backgroundImage} style={styles.BackgroundImage} resizeMode="cover">
+        <View style={styles.Overlay} />
         <View style={styles.Container}>
             <View>
                 <Image
@@ -191,7 +251,7 @@ function LoginPage() {
                     <Text style ={styles.TextInputLabel}>ID</Text>
                     <TextInput
                         style = {styles.input}
-                        placeholder="ID를 입력해주세요"
+                        placeholder="이메일 주소를 입력해주세요"
                         placeholderTextColor='white'
                         value={inputEmail}
                         onChangeText={setInputEmail}
@@ -207,6 +267,24 @@ function LoginPage() {
                         secureTextEntry={true}
                         onChangeText={setInputPassword}
                     />
+                </View>
+                <View style={styles.CheckBoxContainer}>
+                    <CheckBox 
+                        checked={rememberMe}
+                        color='#EA5A2D'
+                        onPress={ async () => {
+                            const newRemeberMe = !rememberMe
+                            setRememberMe(newRemeberMe)
+                            try {
+                                await AsyncStorage.setItem('rememberMe', JSON.stringify(newRemeberMe))
+                            } catch (error) {
+                                console.error("Failed to save rememberMe to AsyncStroage", error)
+                            }
+                        }}
+                        borderWidth={3}
+                        
+                    />
+                    <Text style={styles.CheckBoxText}>로그인 정보 저장</Text>
                 </View>
                 
             </View>

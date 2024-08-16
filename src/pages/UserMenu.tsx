@@ -9,22 +9,31 @@ import settingImage from '../../assets/images/settings-icon.png'
 import { useUserContext } from '../hooks/useUserContext';
 
 const styles = StyleSheet.create({
+    background : {
+        width : '100%',
+        height : '100%',
+        backgroundColor : 'white'
+    },
     container: {
         margin: 20,
         height: '100%',
     },
     userName: {
+        color: 'black',
         fontSize: 22,
         fontWeight: 'bold',
-        margin:10
+        marginLeft: 10,
+        marginBottom: 30,
         //backgroundColor: '#ffffff',
     },
     sectionText: {
-        fontSize: 18,
-        marginStart: 10,
-        marginTop: 20,
+        fontSize: 22,
+        marginStart: 20,
+        marginTop: 40,
+        marginBottom: 30,
         //backgroundColor: '#d2ea2d',
-        fontWeight : 'black'
+        fontWeight : '900',
+        color: 'black',
     },
     backBtnSize: {
         width: 30,
@@ -40,33 +49,44 @@ const styles = StyleSheet.create({
         width: '100%',
         //backgroundColor: '#2de8ea',
     },
-    imageBtn: {
-        width: 'auto',
+    infoBtn: {
+        width: '100%',
         resizeMode: 'contain',
+        height: 105,
+        borderRadius: 25,
+        marginBottom: 10,
+    },
+    peteyeBtn: {
+        width: '100%',
+        resizeMode: 'stretch',
         height: 120,
+        borderRadius: 20,
     },
     allServiceContainer: {
         width: '100%',
         flex: 1,
         flexDirection: 'column',
-        alignItems : 'center'
+        alignItems : 'center',
+        marginStart: 15
     },
-    userSchedule: {
+    serviceItem: {
         flex: 1,
         width : '100%',
         flexDirection: 'row',
         alignItems: 'center',
-        marginBottom: 10, // Add some margin to separate items
+        marginBottom: 20, // Add some margin to separate items
         padding: 10, // Add some padding for better layout,,
     },
-    scheduleImageSize: {
+    itemImageSize: {
         width: 40,
         height: 40,
     },
     serviceName: {
-        fontSize: 16,
-        fontWeight: 'bold',
-        marginLeft : 16
+        color: 'black',
+        fontSize: 18,
+        fontWeight: '900',
+        marginLeft : 20,
+        marginBottom: 5,
     },
 });
 
@@ -74,6 +94,7 @@ const styles = StyleSheet.create({
 function UserMenuList() {
     const { user } = useUserContext()
     return (
+        <View style={styles.background}>
         <ScrollView style={styles.container}>
 
             <Text style={styles.userName}>{user?.name}</Text>
@@ -81,14 +102,14 @@ function UserMenuList() {
             <View style={styles.imageBtnContainer}>
                 <TouchableOpacity>
                     <Image
-                        style={styles.imageBtn}
+                        style={styles.infoBtn}
                         source={userInformImage}
                     />
                 </TouchableOpacity>
 
                 <TouchableOpacity>
                     <Image
-                        style={styles.imageBtn}
+                        style={styles.peteyeBtn}
                         source={peteyeImage}
                     />
                 </TouchableOpacity>
@@ -99,29 +120,30 @@ function UserMenuList() {
             </View>
 
             <View style={styles.allServiceContainer}>
-                <View style={styles.userSchedule}>
+                <TouchableOpacity style={styles.serviceItem}>
                     <Image
-                        style={styles.scheduleImageSize}
+                        style={styles.itemImageSize}
                         source={scheduleImage}
                     />
                     <Text style={styles.serviceName}>일정</Text>
-                </View>
-                <View style={styles.userSchedule}>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.serviceItem}>
                     <Image
-                        style={styles.scheduleImageSize}
+                        style={styles.itemImageSize}
                         source={piechartImage}
                     />
                     <Text style={styles.serviceName}>활동보고서</Text>
-                </View>
-                <View style={styles.userSchedule}>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.serviceItem}>
                     <Image
-                        style={styles.scheduleImageSize}
+                        style={styles.itemImageSize}
                         source={settingImage}
                     />
                     <Text style={styles.serviceName}>환경설정</Text>
-                </View>
+                </TouchableOpacity>
             </View>
         </ScrollView>
+        </View>
     );
 }
 

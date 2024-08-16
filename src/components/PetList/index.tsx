@@ -1,9 +1,10 @@
 import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity } from 'react-native'
 export {}
 import ProfileImage from '../../../assets/images/test-dogprofileimg.png'
+import defaultProfilePicture from '../../../assets/images/default-profile.png'
 import Color from '../../Constants/Color'
 import { Pet } from '../../types/pet'
-import { getDateString } from '../../utils'
+import { getDateString } from '../../Utils'
 
 const style = StyleSheet.create({    
     scroll : {        
@@ -18,18 +19,19 @@ const style = StyleSheet.create({
     item: {
         backgroundColor: Color.BASIG,
         width : '48%',
-        height : 200,
+        height : 220,
         marginBottom : 20,
         justifyContent : 'space-evenly',
         alignItems : 'center',
-        borderRadius : 12
+        borderRadius : 20
     },
     information : {
         alignItems : "center"        
     },
     informationText : {
         fontSize : 16,
-        fontWeight : "900"
+        fontWeight : "900",
+        color : 'black',
     }
 })
 interface PetListProp {
@@ -42,7 +44,7 @@ export function PetList({item, onItemPress} : PetListProp) {
             <View style={style.list}>
                 {
                     item.map((pet) => {
-                        return <Item key={pet.petId} pet={pet} onPress={() => onItemPress(pet)}/>
+                        return <Item key={pet.petId} pet={pet} profileImageUrl={pet.profilePictureURL} onPress={() => onItemPress(pet)}/>
                     })
                 }
             </View>
@@ -50,17 +52,17 @@ export function PetList({item, onItemPress} : PetListProp) {
     )
 }
 
-function Item({pet, onPress} : ItemProps) {
+function Item({pet, profileImageUrl, onPress} : ItemProps) {
     return (
         <TouchableOpacity style={style.item} onPress={onPress}>
             <View>
                 <Image
                     style={{
-                        width : 100,
-                        height : 100,
-                        borderRadius : 50
+                        width : 120,
+                        height : 120,
+                        borderRadius : 60
                     }}
-                    source={ProfileImage}
+                    source={profileImageUrl ? {uri : `http://192.168.217.1:5500/img/${profileImageUrl}`} : defaultProfilePicture}
                 />
             </View>
             <View style={style.information}>
@@ -73,5 +75,6 @@ function Item({pet, onPress} : ItemProps) {
 
 interface ItemProps {
     pet: Pet
+    profileImageUrl : string | null; //null시 넣어둔 기본이미지 
     onPress: () => void
 }

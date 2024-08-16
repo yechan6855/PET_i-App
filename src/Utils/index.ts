@@ -1,7 +1,7 @@
 import { Platform } from "react-native"
 
 export function getDateString(date : Date) {
-    return `${date.getFullYear()}.${date.getMonth() + 1}.${date.getDay().toString().padStart(2, '0')}`
+    return `${date.getFullYear()}.${(date.getMonth() + 1).toString().padStart(2, '0')}.${date.getDay().toString().padStart(2, '0')}`
 }
 
 const PORT = 5500

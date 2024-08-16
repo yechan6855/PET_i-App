@@ -6,9 +6,14 @@ import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '.';
 import { getServerURL } from '../Constants/Config';
+import checkIcon from '../../assets/images/check-icon.png'
 
 const styles = StyleSheet.create({
-
+    background : {
+        width : '100%',
+        height : '100%',
+        backgroundColor : 'white'
+    },
     container : {
         flex : 1,
         // width : '100%',
@@ -29,7 +34,7 @@ const styles = StyleSheet.create({
     informTextSection : {
         width : '90%',
         // height : '20%',
-        justifyContent : 'center',        
+        justifyContent : 'center',
         // backgroundColor : '#3fea2d',
     },
     informText :{
@@ -57,7 +62,7 @@ const styles = StyleSheet.create({
         //backgroundColor : '#d2ea2d'
     },
     pwTextInput :{
-        width : '90%',
+        width : '100%',
         // height : '40%',
         borderBottomWidth: 2,
         borderBottomColor: Color.ORANGE,
@@ -77,7 +82,7 @@ const styles = StyleSheet.create({
         // backgroundColor : '#6d1a00'
     },
     textInput:{
-        width : '90%',
+        width : '100%',
         // height : '25%',
         textAlign : 'left',
         borderBottomWidth: 2,
@@ -86,6 +91,7 @@ const styles = StyleSheet.create({
         padding : 6,
         fontSize : 18,
         marginBottom: 10,
+        position: 'relative',
     },
     sendCodeBtn :{
         width : '80%',
@@ -97,7 +103,7 @@ const styles = StyleSheet.create({
         // marginVertical: 10,
     },
     signinBtn :{
-        width : '80%',
+        width : '90%',
         // height : '100%',        
         justifyContent : 'center',
         alignItems : 'center',
@@ -109,6 +115,13 @@ const styles = StyleSheet.create({
         fontWeight : '900',
         color : "#fff",
         padding : 12
+    },
+    checkIcon: {
+        position: 'absolute',
+        right: 0,
+        bottom: 15,
+        width: 30,
+        height: 30,
     }
 
 
@@ -193,6 +206,7 @@ function Signin() {
     }, [inputName, inputPhoneNumber, inputEmail, inputPassword, inputPWcheck])
 
     return(
+        <View style={styles.background}>
         <KeyboardAvoidingView
             style={styles.container}
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -206,7 +220,7 @@ function Signin() {
                         가입을 진행하기 위해{"\n"}아래의 정보를 입력해 주세요
                     </Text>
                 </View>
-
+                <View style={{width: '90%'}}>
                 <TextInput
                         style = {styles.textInput}
                         placeholder="이름을 입력해주세요"
@@ -214,6 +228,10 @@ function Signin() {
                         value={inputName}
                         onChangeText={setInputName}
                 />
+                {inputName && <Image source={checkIcon} style={styles.checkIcon}/>}
+                </View>
+
+                <View style={{width: '90%'}}>
                 <TextInput
                         style = {styles.textInput}
                         placeholder="전화번호를 입력해주세요"
@@ -221,6 +239,8 @@ function Signin() {
                         value={inputPhoneNumber}
                         onChangeText={setInputPhoneNumber}
                 />
+                {inputPhoneNumber && <Image source={checkIcon} style={styles.checkIcon}/>}
+                </View>
 
                 <TouchableOpacity style ={styles.sendCodeBtn}>
                     <Text style={{
@@ -239,25 +259,36 @@ function Signin() {
                             
             <View style = {styles.userIDSection}>
 
+                <View style={{width: '90%'}}>
                 <TextInput
                     style = {styles.textInput}
                     placeholder="이메일 주소를 입력해주세요"
                     value={inputEmail}
                     onChangeText={setInputEmail}
                 />
+                {inputEmail && <Image source={checkIcon} style={styles.checkIcon}/>}                
+                </View>
+
                 <View style = {styles.userPWSection}>
+                    <View style={{width: '90%'}}>
                     <TextInput
                         style = {styles.pwTextInput}
                         placeholder="비밀 번호 입력"
                         value={inputPassword}
                         onChangeText={setInputPassword}
                     />
+                    {inputPassword && <Image source={checkIcon} style={styles.checkIcon}/>}
+                    </View>
+
+                    <View style={{width: '90%'}}>
                     <TextInput
                         style = {styles.pwTextInput}
                         placeholder="비밀 번호 확인"
                         value={inputPWcheck}
                         onChangeText={setInputPWcheck}
                     />
+                    {inputPWcheck && <Image source={checkIcon} style={styles.checkIcon}/>}
+                    </View>
                 </View>
 
 
@@ -278,6 +309,7 @@ function Signin() {
         </View>
         </ScrollView>
         </KeyboardAvoidingView>
+        </View>
     );
 }
 

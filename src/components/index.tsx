@@ -10,6 +10,7 @@ const styles = StyleSheet.create({
         marginBottom : 9
     },
     sectionTitleText : {
+        color : 'black',
         fontSize : 18,
         fontWeight : '900',        
     }
