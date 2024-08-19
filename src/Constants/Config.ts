@@ -8,7 +8,7 @@ export function getServerURL() : string {
         case "ios":
             return IOS_SERVER
         case "android":
-            return ANDROID_SERVER
+            return SERVER
         default:
             throw new Error("IOS or Android 만 가능함.")
     }

@@ -5,6 +5,7 @@ import {PetList} from "../components/EditPetList"
 import style from '../Constants/Styles'
 import usePet from '../hooks/usePet';
 import { useUserContext } from '../hooks/useUserContext';
+import { getServerURL } from '../Constants/Config';
 
 import petProfileImg from '../../assets/images/test-dogprofileimg.png';
 import Color from '../Constants/Color';
@@ -71,7 +72,7 @@ function EditPetList()
 
     const handleSave = async () => {
         try {
-            const response = await fetch('http://10.0.2.2:5500/pet/edit', {
+            const response = await fetch(`${getServerURL()}/pet/edit`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

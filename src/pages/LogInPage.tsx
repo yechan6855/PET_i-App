@@ -143,7 +143,7 @@ function LoginPage() {
     useEffect(()=>{
         // 로그인 되어있는지 검증
         async function loginFetch() {
-            const response = await fetch(`http://10.0.2.2:5500/auth`)
+            const response = await fetch(`http://freeptk.iptime.org/auth`)
             const result = await response.json()
             if ("user" in result) {
                 navigation.navigate("PetList")
