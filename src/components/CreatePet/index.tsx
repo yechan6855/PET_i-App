@@ -1,5 +1,5 @@
 import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
-import testProfileImage from '../../../assets/images/test-dogprofileimg.png';
+import testProfileImage from '../../../assets/images/default-profile.png';
 import Color from "../../Constants/Color";
 import { useEffect, useMemo, useState } from "react";
 import { Asset, launchImageLibrary } from "react-native-image-picker";

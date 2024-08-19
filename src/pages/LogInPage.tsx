@@ -173,8 +173,8 @@ function LoginPage() {
         useCallback(() => {
             if (!rememberMe) {
                 setInputEmail('')
-                setInputPassword('')
             }
+            setInputPassword('')
         }, [rememberMe])
     )
 

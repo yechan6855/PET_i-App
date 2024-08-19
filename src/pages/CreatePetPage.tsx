@@ -14,7 +14,6 @@ import { RootStackParamList } from "."
 import { breedList } from '../data/petBreedData';
 import { getServerURL } from '../Constants/Config';
 
-
 const styles = StyleSheet.create({
 
     container :{
@@ -235,10 +234,7 @@ function CreatePet()
             console.log("성별 null")
             return
         }        
-        if (!image) {
-            console.log("이미지 null")
-            return
-        }
+
         await createRequest(name, gender, breed, birth, image)
     }, [petForm])
     const createRequest = useCallback (async (
@@ -246,14 +242,17 @@ function CreatePet()
         gender : number,
         breed : string,
         birth : String,
-        image : ImageFileProp
+        image : ImageFileProp | undefined
     ) => {
         const formData = new FormData()
         formData.append("name", name)
         formData.append("gender", gender)
         formData.append("breed", breed)
         formData.append("birth", birth)
-        formData.append("image", {...image, name : image.fileName})
+
+        if (image) {
+            formData.append("image", {...image, name : image.fileName})
+        }
         // console.log(formData)
         const response = await fetch("http://10.0.2.2:5500/pet", {
             method : "POST",
@@ -301,11 +300,10 @@ function CreatePet()
                 >
                     <RNPickerSelect                        
                         onValueChange={(value) => dispatch({key:"BREED", breed : value})}
-                        items={[
-                            { label: '말티즈', value: '말티즈' },
-                            { label: 'Baseball', value: 'baseball' },
-                            { label: 'Hockey', value: 'hockey' },
-                        ]}
+                        items={breedList.map((item) => ({
+                            label : item,
+                            value : item,
+                        }))}
                         />
                 </Section>
                 <TouchableOpacity style={styles.createBtn} onPress={() => {createAction(); navigation.navigate("PetList");}}>
