@@ -2,10 +2,11 @@ import { NavigationProp, ParamListBase } from '@react-navigation/native';
 import React from 'react';
 import {Alert, Button, Text, View} from 'react-native';
 import { useUserContext } from '../hooks/useUserContext';
+import SplashScreen from 'react-native-splash-screen';
 
 function Developer({navigation}: {navigation: NavigationProp<ParamListBase>}) {
     const usercontext = useUserContext()    
-    return (
+    return (        
         <View>
 
             <Button

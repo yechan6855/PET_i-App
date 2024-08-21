@@ -1,4 +1,4 @@
-import React, { ComponentType } from "react";
+import React, { ComponentType, useEffect, useState } from "react";
 import { NativeStackNavigationOptions, NativeStackNavigationProp, createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import Developer from "./Developer";
@@ -15,6 +15,8 @@ import Signin from "./SigninPage";
 import backButtonImage from '../../assets/images/backbtn.png';
 import { Authorization } from "../components/Authorization";
 import { Pet } from "../types/pet";
+import { useUserContext } from "../hooks/useUserContext";
+import { getServerURL } from "../Constants/Config";
 
 export type RootStackParamList = {
     Developer: undefined;
@@ -97,9 +99,37 @@ const withAuthorization = (Component : ComponentType<any>) => {
     )
 }
 export const Pages = () => {
+    const [initialRoute, setInitialRoute] = useState<keyof RootStackParamList | null>(null);
+
+    useEffect(() => {
+        async function checkAuthStatus() {
+            try {
+                const response = await fetch(`${getServerURL()}/auth`, {
+                    method: 'POST'
+                })
+                const result = await response.json()
+                if (response.ok && result.user) {
+                    setInitialRoute('PetList')
+                } else {
+                    setInitialRoute('Login')
+                }
+            } catch (error) {
+                console.error('Failed to check auth status', error)
+                setInitialRoute('Login')
+            }
+        }
+
+        checkAuthStatus()
+    }, [])
+
+    // 초기 라우트가 설정되기 전에는 로딩 상태를 표시
+    if (initialRoute === null) {
+        return null;
+    }
+
     return (
         <NavigationContainer>
-            <Stack.Navigator initialRouteName="Developer">
+            <Stack.Navigator initialRouteName={initialRoute}>
                 {
                     data.map(({endPoint, component, option, isAuth}, index) => {
                         const ScreenComponent = isAuth ? withAuthorization(component) : component;

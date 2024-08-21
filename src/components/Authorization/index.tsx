@@ -10,12 +10,12 @@ export function Authorization({children} : {children : React.ReactNode}) {
         async function fetchUser() {
             if (user) return
             try {
-                const resopnse = await fetch(`${getServerURL()}/auth`, {
+                const response = await fetch(`${getServerURL()}/auth`, {
                     method : "post"
                 })
-                const result = await resopnse.json()
+                const result = await response.json()
 
-                if (!resopnse.ok)
+                if (!response.ok)
                     throw new Error(result.message)
                 
                 setUser(result.user)
